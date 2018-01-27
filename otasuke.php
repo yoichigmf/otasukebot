@@ -1,4 +1,4 @@
-$accessToken = 'あなたのアクセストークン';
+$accessToken = 'CyQ8Ia7ukcEI9yct3NgYg8jzfyzN5hFQZx4Bq6TASr1jG6OKwQJcIdfV+ZWH0PSPbCVA6u1gM95paHuf6dKsXUikc+biVe/9rnCb+tN4wA6r1VDNqd1WNUinPgBzEX1AVA10eNojxFnOKTNJZABeqAdB04t89/1O/w1cDnyilFU=';
 
 
 //ユーザーからのメッセージ取得
