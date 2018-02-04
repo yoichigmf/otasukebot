@@ -77,10 +77,13 @@ $actions = array(
 );
  
  
- $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 2" );
+
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
 $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
+
+ $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3" );
+ 
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 
