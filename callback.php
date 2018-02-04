@@ -38,7 +38,7 @@ foreach ($events as $event) {
                
                
                  if ( strcmp($action, "select" )==0  ) {
-                    echo "onaji";
+
             
                   targetmenu( $bot, $event, $data["target"] );
                   continue;
@@ -67,6 +67,7 @@ foreach ($events as $event) {
 function targetmenu( $boti, $eventi, $targeti )
 {
 
+       $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu" );
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=${targeti}&menu=kaigo"),
