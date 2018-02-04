@@ -21,7 +21,7 @@ foreach ($events as $event) {
       }
       
       bot->replyText($event->getReplyToken(), $page);
-}
+
       continue;
       
   }
