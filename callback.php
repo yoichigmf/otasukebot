@@ -20,7 +20,7 @@ foreach ($events as $event) {
              continue;
       }
       
-      bot->replyText($event->getReplyToken(), $page);
+      $bot->replyText($event->getReplyToken(), $page);
 
       continue;
       
