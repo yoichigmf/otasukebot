@@ -19,10 +19,24 @@ foreach ($events as $event) {
       if (!($event instanceof \LINE\LINEBot\Event\PostbackEvent) ) {
              continue;
       }
+      //  post back event の時の処理
+   
       
-      $bot->replyText($event->getReplyToken(), $page);
+       $query = $event->getPostbackData();
+       if ($query) {
+        // Querystringをパースして配列に戻す
+           parse_str($query, $data);
+           
+          if (isset($data["page"])) {
+            $page = $data["page"];
+           }
+           
+            if (isset($data["action"])) {
+            $action = $data["page"];
+           }
+        $bot->replyText($event->getReplyToken(), $action);
 
-      continue;
+        continue;
       
   }
 
@@ -55,10 +69,10 @@ function firstmessage( $boti, $eventi, $pagen )
 {
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("親", "page=1"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("子供", "page=2"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("隣人", "page=3"),
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "page=4")
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("親", "action=select&target=parent"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("子供", "action=select&target=child"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("自分", "action=select&target=self"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
