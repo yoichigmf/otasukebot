@@ -86,7 +86,7 @@ $msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのような
  
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg2);
 
-
+$boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3 ${res}" );
 
 }
 
