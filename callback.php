@@ -45,11 +45,12 @@ foreach ($events as $event) {
                  
                          
                  if ( strcmp($action, "target" )==0  ) {
-                 
-                      
-                       if ( strcmp( $data["menu"] , "ninchisyo" )==0  ) {
+                       $menus = $data["menu"] ;
                        
-                        nintisyou( $bot, $event, $query, $page);
+                      
+                       if ( strcmp( $menus , "ninchisyo" )==0  ) {
+                       
+                       nintisyou( $bot, $event, $query, $page);
                         continue;
                        
                        
