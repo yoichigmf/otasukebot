@@ -37,6 +37,13 @@ foreach ($events as $event) {
                $action = $data["action"];
                 }
            
+            if ( $action == "select" ) {
+            
+                  targetmenu( $bot, $event, $data["target"] );
+                  continue;
+             }
+             
+             
            }
      
        $bot->replyText($event->getReplyToken(), $query);
@@ -50,6 +57,28 @@ foreach ($events as $event) {
  //  confirmmessage( $bot, $event, $page );
     
 }
+
+function targetmenu( $boti, $eventi, $targeti )
+{
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=${targeti}&menu=kaigo"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("病気・けが", "action=target&target=${targeti}&menu=sick"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活", "action=target&target=${targeti}&menu=life"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+
+
+}
+
+
 
 function confirmmessage( $boti, $eventi, $pagen )
 {
@@ -89,7 +118,6 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 
 
-  //$bot->replyText($event->getReplyToken(), $event->getText());
 }
 
 ?>
