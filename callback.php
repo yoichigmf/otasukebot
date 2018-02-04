@@ -44,6 +44,14 @@ foreach ($events as $event) {
                   continue;
                      }
                  
+                         
+                 if ( strcmp($action, "select2" )==0  ) {
+
+           //  confirmmessage( $bot, $event,$data["target"]);
+                 targetmenu( $bot, $event, $data["target"] );
+                  continue;
+                     }    
+                 
                  
                 }
            
@@ -96,9 +104,9 @@ function confirmmessage( $boti, $eventi, $pagen )
 {
 
 // 「はい」ボタン
-$yes_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "page={$pagen}");
+$yes_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=select2&target={$pagen}");
 // 「いいえ」ボタン
-$no_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ", "page=-1");
+$no_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ", "action=cancel");
 // Confirmテンプレートを作る
 $confirm = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder("親御さんについてのお困りごとですか?", [$yes_post, $no_post]);
 // Confirmメッセージを作る
