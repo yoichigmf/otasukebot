@@ -68,7 +68,7 @@ function targetmenu( $boti, $eventi, $targeti )
 {
 
       // $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu" );
-$actions = array(
+$actions2 = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=${targeti}&menu=kaigo"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("病気・けが", "action=target&target=${targeti}&menu=sick"),
@@ -78,13 +78,13 @@ $actions = array(
  
  
 
-$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
-$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
+$img_url2 = "https://otasukebot.herokuapp.com/otasuke.png";
+$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url2, $actions2);
+$msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button2);
 
- $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3" );
+// $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3" );
  
-$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg2);
 
 
 
