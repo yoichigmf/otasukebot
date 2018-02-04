@@ -35,6 +35,7 @@ foreach ($events as $event) {
            
             if (isset($data["action"])) {
                $action = $data["action"];
+                 $bot->replyText($event->getReplyToken(), $action);
                 }
            
    
