@@ -48,7 +48,9 @@ foreach ($events as $event) {
                  if ( strcmp($action, "select2" )==0  ) {
 
            //  confirmmessage( $bot, $event,$data["target"]);
-                 nextmessage( $bot, $event, $data["target"] );
+            //     nextmessage( $bot, $event, $data["target"] );
+                 
+                   firstmessage( $bot, $event, $page );
                   continue;
                      }    
                  
@@ -87,12 +89,12 @@ $actions2 = array(
  
 
 $img_url2 = "https://otasukebot.herokuapp.com/otasuke.png";
-$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url2, $actions2);
+$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け", "どのようなお困りごとですか？", $img_url2, $actions2);
 $msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button2);
 
 // $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3" );
  $res = $bot2i->replyMessage($eventi->getReplyToken(),$msg2);
-//$res = $boti->replyMessage($eventi->getReplyToken(),$msg2);
+
 
 //$boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3 ${res}" );
 
