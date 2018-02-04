@@ -39,8 +39,8 @@ foreach ($events as $event) {
                
                  if ( strcmp($action, "select" )==0  ) {
 
-            
-                  targetmenu( $bot, $event, $data["target"] );
+             confirmmessage( $bot, $event,$data["target"]);
+              //    targetmenu( $bot, $event, $data["target"] );
                   continue;
                      }
                  
