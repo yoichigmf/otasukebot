@@ -37,11 +37,7 @@ foreach ($events as $event) {
                $action = $data["action"];
                 }
            
-            if ( strcmp($action, "select" ) == 0  ) {
-            
-                  targetmenu( $bot, $event, $data["target"] );
-                  continue;
-             }
+   
              
              
            }
