@@ -37,7 +37,8 @@ foreach ($events as $event) {
                $action = $data["action"];
                
                
-                 if ( strcmp($action, "select" ) == 0  ) {
+                 if ( strcmp($action, "select" )==0  ) {
+                    echo "onaji";
             
                   targetmenu( $bot, $event, $data["target"] );
                   continue;
