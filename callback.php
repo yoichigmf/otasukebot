@@ -50,7 +50,7 @@ foreach ($events as $event) {
                       
                        if ( strcmp( $menus , "ninchisyo" )==0  ) {
                        
-                       nintisyou( $bot, $event, $query, $page);
+                       nintisyotmenu( $bot, $event, $query, $page);
                         continue;
                        
                        
@@ -121,34 +121,25 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 }
 
-
-
-
-function nextmessage( $boti2, $eventi, $targeti )
+function nintisyotmenu( $boti, $eventi, $targeti, $pagei )
 {
 
-      // $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu" );
-$actions2 = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo"),
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=${targeti}&menu=kaigo"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("病気・けが", "action=target&target=${targeti}&menu=sick"),
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活", "action=target&target=${targeti}&menu=life"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("病気・けが", "action=targettarget=${targeti}&menu=byouki"),
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
 );
  
- 
-
-$img_url2 = "https://otasukebot.herokuapp.com/otasuke.png";
-$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け", "どのようなお困りごとですか？", $img_url2, $actions2);
-$msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button2);
-
-// $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3" );
- $res = $bot2i->replyMessage($eventi->getReplyToken(),$msg2);
-
-
-//$boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3 ${res}" );
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 }
+
+
+
 
 
 
