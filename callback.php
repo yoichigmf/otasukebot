@@ -24,6 +24,12 @@ foreach ($events as $event) {
    
       
        $query = $event->getPostbackData();
+       
+         if ($query) {
+        // Querystringをパースして配列に戻す
+           parse_str($query, $data);
+           
+           }
      
        $bot->replyText($event->getReplyToken(), $query);
 
