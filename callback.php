@@ -57,11 +57,12 @@ function firstmessage( $boti, $eventi, $pagen )
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("親", "page=1"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("子供", "page=2"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("隣人", "page=3")
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("隣人", "page=3"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "page=4")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("困りごと","説明", $img_url, $actions);
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どなたについてのお困りごとですか？", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どなたについてのお困りごとですか？", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
