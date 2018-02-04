@@ -26,21 +26,49 @@ foreach ($events as $event) {
       
   }
 
+  firstmessage( $bot, $event, $page );
+  
+}
+
+
+function firstmessage( $boti, $eventi, $pagen )
+{
+
+$actions = array(
+  // action
+  new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("文字返し","メッセージ1"),
+  // action
+  new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
+  //
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("親", "page=1"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("子供", "page=2"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("隣人", "page=3")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("按鈕文字","說明", $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どなたについてのお困りごとですか？", $button);
+$boti->replyMessage($eventi->getReplyToken(),$msg);
+
+
+
 // 「はい」ボタン
-$yes_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "page={$page}");
+//$yes_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "page={$pagen}");
 // 「いいえ」ボタン
-$no_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ", "page=-1");
+//$no_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ", "page=-1");
 // Confirmテンプレートを作る
-$confirm = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder("メッセージ", [$yes_post, $no_post]);
+//$confirm = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder("親御さんについてのお困りごとですか?", [$yes_post, $no_post]);
 // Confirmメッセージを作る
-$confirm_message = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("メッセージのタイトル", $confirm);
+//$confirm_message = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("メッセージのタイトル", $confirm);
 
-$message = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+//$message = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
 
-$message->add($confirm_message);
+//$message->add($confirm_message);
 // リプライTokenを付与して返信する
-$res = $bot->replyMessage($event->getReplyToken(), $message);
+//$res = $boti->replyMessage($eventi->getReplyToken(), $message);
 
 
   //$bot->replyText($event->getReplyToken(), $event->getText());
 }
+
+?>
