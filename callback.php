@@ -27,15 +27,15 @@ foreach ($events as $event) {
   }
 
 // 「はい」ボタン
-$yes_post = new PostbackTemplateActionBuilder("はい", "page={$page}");
+$yes_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "page={$page}");
 // 「いいえ」ボタン
-$no_post = new PostbackTemplateActionBuilder("いいえ", "page=-1");
+$no_post = new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ", "page=-1");
 // Confirmテンプレートを作る
-$confirm = new ConfirmTemplateBuilder("メッセージ", [$yes_post, $no_post]);
+$confirm = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder("メッセージ", [$yes_post, $no_post]);
 // Confirmメッセージを作る
-$confirm_message = new TemplateMessageBuilder("メッセージのタイトル", $confirm);
+$confirm_message = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("メッセージのタイトル", $confirm);
 
-$message = new MultiMessageBuilder();
+$message = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
 
 $message->add($confirm_message);
 // リプライTokenを付与して返信する
