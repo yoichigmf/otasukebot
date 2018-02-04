@@ -39,8 +39,8 @@ foreach ($events as $event) {
                
                  if ( strcmp($action, "select" )==0  ) {
 
-             confirmmessage( $bot, $event,$data["target"]);
-              //    targetmenu( $bot, $event, $data["target"] );
+             //confirmmessage( $bot, $event,$data["target"]);
+                nextmenu( $bot, $event, $data["target"] );
                   continue;
                      }
                  
@@ -73,6 +73,31 @@ foreach ($events as $event) {
  //  confirmmessage( $bot, $event, $page );
     
 }
+
+
+
+function nextmenu( $boti, $eventi, $pagen )
+{
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("親", "action=select&target=parent"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("子供", "action=select&target=child"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("自分", "action=select&target=self"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どなたについてのお困りごとですか？", $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どなたについてのお困りごとですか？", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+
+
+
+}
+
+
+
 
 function nextmessage( $boti2, $eventi, $targeti )
 {
