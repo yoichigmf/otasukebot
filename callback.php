@@ -128,7 +128,7 @@ $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("全くない", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("ときどきある", "action=target&target=${targeti}&menu=kaigo"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("頻繁にある", "action=targettarget=${targeti}&menu=byouki"),
-        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いつもそうだ", "action=targettarget=${targeti}&menu=byouki"),
+     
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
 );
  
