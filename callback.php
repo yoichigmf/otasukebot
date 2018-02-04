@@ -35,7 +35,15 @@ foreach ($events as $event) {
            
             if (isset($data["action"])) {
                $action = $data["action"];
-                 $bot->replyText($event->getReplyToken(), $action);
+               
+               
+                 if ( strcmp($action, "select" ) == 0  ) {
+            
+                  targetmenu( $bot, $event, $data["target"] );
+                  continue;
+                     }
+                 
+                 
                 }
            
    
