@@ -26,8 +26,8 @@ foreach ($events as $event) {
       
   }
 
- // firstmessage( $bot, $event, $page );
-   confirmmessage( $bot, $event, $page );
+  firstmessage( $bot, $event, $page );
+ //  confirmmessage( $bot, $event, $page );
     
 }
 
@@ -55,11 +55,6 @@ function firstmessage( $boti, $eventi, $pagen )
 {
 
 $actions = array(
-  // action
-  new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("文字返し","メッセージ1"),
-  // action
-  new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
-  //
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("親", "page=1"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("子供", "page=2"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("隣人", "page=3")
@@ -68,7 +63,7 @@ $actions = array(
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
 $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("困りごと","説明", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どなたについてのお困りごとですか？", $button);
-$boti->replyMessage($eventi->getReplyToken(),$msg);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 
 
