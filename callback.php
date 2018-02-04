@@ -80,9 +80,9 @@ function nextmenu( $boti, $eventi, $pagen )
 {
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("親", "action=select&target=parent"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("子供", "action=select&target=child"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("自分", "action=select&target=self"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=parent"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=child"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("病気・けが", "action=target&target=self"),
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
 );
  
