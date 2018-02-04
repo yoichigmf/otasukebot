@@ -46,7 +46,7 @@ $actions = array(
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("按鈕文字","說明", $img_url, $actions);
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("困りごと","説明", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どなたについてのお困りごとですか？", $button);
 $boti->replyMessage($eventi->getReplyToken(),$msg);
 
