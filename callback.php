@@ -48,7 +48,7 @@ foreach ($events as $event) {
                  if ( strcmp($action, "select2" )==0  ) {
 
            //  confirmmessage( $bot, $event,$data["target"]);
-                 targetmenu( $bot, $event, $data["target"] );
+                 nextmenu( $bot, $event, $data["target"] );
                   continue;
                      }    
                  
@@ -72,7 +72,7 @@ foreach ($events as $event) {
     
 }
 
-function targetmenu( $boti, $eventi, $targeti )
+function nextmenu( $boti2, $eventi, $targeti )
 {
 
       // $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu" );
@@ -91,10 +91,10 @@ $button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilde
 $msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button2);
 
 // $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3" );
- 
-$res = $boti->replyMessage($eventi->getReplyToken(),$msg2);
+ $res = $bot2i->replyMessage($eventi->getReplyToken(),$msg2);
+//$res = $boti->replyMessage($eventi->getReplyToken(),$msg2);
 
-$boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3 ${res}" );
+//$boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 3 ${res}" );
 
 }
 
