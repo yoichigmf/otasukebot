@@ -48,7 +48,7 @@ foreach ($events as $event) {
                  if ( strcmp($action, "select2" )==0  ) {
 
            //  confirmmessage( $bot, $event,$data["target"]);
-                 nextmenu( $bot, $event, $data["target"] );
+                 nextmessage( $bot, $event, $data["target"] );
                   continue;
                      }    
                  
@@ -72,7 +72,7 @@ foreach ($events as $event) {
     
 }
 
-function nextmenu( $boti2, $eventi, $targeti )
+function nextmessage( $boti2, $eventi, $targeti )
 {
 
       // $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu" );
