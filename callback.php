@@ -67,7 +67,7 @@ foreach ($events as $event) {
 function targetmenu( $boti, $eventi, $targeti )
 {
 
-       $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu" );
+      // $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu" );
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=${targeti}&menu=kaigo"),
@@ -76,6 +76,8 @@ $actions = array(
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
 );
  
+ 
+ $boti->replyText($eventi->getReplyToken(), "${targeti} in the target menu 2" );
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
 $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
