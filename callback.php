@@ -25,6 +25,9 @@ foreach ($events as $event) {
       
        $query = $event->getPostbackData();
      
+       $bot->replyText($event->getReplyToken(), $query);
+
+         
         continue;
       
   }
