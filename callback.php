@@ -29,6 +29,14 @@ foreach ($events as $event) {
         // Querystringをパースして配列に戻す
            parse_str($query, $data);
            
+           if (isset($data["page"])) {
+            $page = $data["page"];
+             }
+           
+            if (isset($data["action"])) {
+               $action = $data["action"];
+                }
+           
            }
      
        $bot->replyText($event->getReplyToken(), $query);
