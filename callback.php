@@ -24,19 +24,7 @@ foreach ($events as $event) {
    
       
        $query = $event->getPostbackData();
-       if ($query) {
-        // Querystringをパースして配列に戻す
-           parse_str($query, $data);
-           
-          if (isset($data["page"])) {
-            $page = $data["page"];
-           }
-           
-            if (isset($data["action"])) {
-            $action = $data["page"];
-           }
-        $bot->replyText($event->getReplyToken(), $action);
-
+     
         continue;
       
   }
