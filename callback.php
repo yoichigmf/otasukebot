@@ -125,15 +125,15 @@ function nintisyotmenu( $boti, $eventi, $targeti, $pagei )
 {
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=${targeti}&menu=kaigo"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("病気・けが", "action=targettarget=${targeti}&menu=byouki"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("全くない", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("ときどきある", "action=target&target=${targeti}&menu=kaigo"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("頻繁にある", "action=targettarget=${targeti}&menu=byouki"),
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
-$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("認知症気づきチェック","財布や鍵など,物を置いた場所がわからなくなることがありますか", $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("認知症気づきチェック", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 }
