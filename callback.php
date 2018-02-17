@@ -48,9 +48,17 @@ foreach ($events as $event) {
                        $menus = $data["menu"] ;
                        
                       
-                       if ( strcmp( $menus , "ninchisyo" )==0  ) {
+                       if ( strcmp( $menus , "nintisyomenu" )==0  ) {
                        
-                       nintisyotmenu( $bot, $event, $query, $page);
+                       nintisyomenu( $bot, $event, $query, $page);
+                        continue;
+                       
+                       
+                       }
+                       
+                       if ( strcmp( $menus , "hantei" )==0  ) {
+                       
+                       hanteimenu( $bot, $event, $query, $page);
                         continue;
                        
                        
@@ -101,16 +109,38 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 
 
+function  hanteimenu( $boti, $eventi, $targeti )
+{
+
+   //    $boti->replyText($eventi->getReplyToken(), $targeti);
+       
+       
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症きづきチェック", "action=select&target=nintisyomenu&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知機能・自立度振り分けチャート", "action=select&target=jiritudo&page=0"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("最初のメニュー", "action=select&target=kyouiku"),
+   
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け"チェックを選べます", $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("困りごとの種類は？", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+
+}
+
+
 function nextmenu( $boti, $eventi, $targeti )
 {
 
  if ( strcmp($targeti, "nintisyou" )==0  ) {
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症って何？", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症チェック\n自立度判定", "action=target&target=${targeti}&menu=kaigo"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身近な地域で予防活動を", "action=targettarget=${targeti}&menu=byouki"),
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("どこに相談すれば？", "action=cancel")
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症って何？", "action=target&target=${targeti}&menu=nintisyo_nani&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症チェック\n自立度判定", "action=target&target=${targeti}&menu=hantei"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身近な地域で予防活動を", "action=target&target=${targeti}&menu=byouki"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("どこに相談すれば？", "action=target")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
@@ -126,7 +156,7 @@ else  {
 
 }
 
-function nintisyotmenu( $boti, $eventi, $targeti, $pagei )
+function nintisyomenu( $boti, $eventi, $targeti, $pagei )
 {
 parse_str($targetl, $datal);
         
