@@ -81,7 +81,7 @@ foreach ($events as $event) {
 function  notsupport( $boti, $eventi, $targeti )
 {
 
-       $bot->replyText($event->getReplyToken(), $targeti);
+       $bot->replyText($eventi->getReplyToken(), $targeti);
        
        
 $actions = array(
