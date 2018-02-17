@@ -123,7 +123,7 @@ function  hanteimenu( $boti, $eventi, $targeti )
        
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症きづきチェック", "action=select&menu=nintisyomenu&page=0"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知機能・自立度振り分けチャート", "action=select&target=jiritudo&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知機能・自立度振り分け", "action=select&target=jiritudo&page=0"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("最初のメニュー", "action=select&menu=topmenu"),
    
 );
@@ -143,8 +143,8 @@ function nextmenu( $boti, $eventi, $targeti )
  if ( strcmp($targeti, "nintisyou" )==0  ) {
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症って何？", "action=target&target=${targeti}&menu=nintisyo_nani&page=0"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症チェック\n自立度判定", "action=target&target=${targeti}&menu=hantei"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症って何？", "action=select&target=${targeti}&menu=nintisyo_nani&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症チェック\n自立度判定", "action=select&target=${targeti}&menu=hantei"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身近な地域で予防活動を", "action=target&target=${targeti}&menu=byouki"),
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("どこに相談すれば？", "action=target")
 );
