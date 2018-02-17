@@ -183,9 +183,9 @@ else  {
 
 function nintisyomenu( $boti, $eventi, $targeti, $pagei , $score )
 {
-parse_str($targeti, $datal);
+//parse_str($targeti, $datal);
         
-$otarget = $datal["target"];
+//$otarget = $datal["target"];
 
 
 
@@ -194,7 +194,7 @@ if ( $pagei > 9 ) {
      $tgmsg = "";
 
     $if ( $score >= 20 ) {
-       $tgmsg ="認知症気づきチェックの点数は ${score} 点です  認知機能や社会生活に支障が出ている可能性があります お近くの医療機関や相談機関に相談してみましょう";
+       $tgmsg ="認知症気づきチェックの点数は ${score} 点です";
     }
     else {
     
