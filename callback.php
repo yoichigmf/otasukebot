@@ -204,7 +204,7 @@ if ( $pagei > 9 ) {
      }
   
   
-    hanteimenu( $boti, $eventi,  $tgmsg, $score );
+   // hanteimenu( $boti, $eventi,  $tgmsg, $score );
     
     
      $boti->replyText($eventi->getReplyToken(), $tgmsg);
