@@ -70,7 +70,16 @@ foreach ($events as $event) {
                         continue;
                        }
 
-                }    
+                     }    
+                     
+                     
+                 if ( strcmp($action, "target" )==0  ) {    //  menu 選択の場合
+                 
+                 
+                 
+                     }
+                     
+                 
                  
                  
                 }
@@ -186,11 +195,34 @@ $tgm = $msgs[ $pagei];
 
 $npage = $pagei + 1;
 
+
+$msgar1 = array( "全くない", "ときどきある", "頻繁にある", "いつもそうだ" );
+
+$msgar2 = array( "問題なくできる", "だいたいできる", "あまりできない", "できない" );
+$msg0 = "";
+$msg1 = "";
+$msg2 = "";
+$msg3 = "";
+
+if ( $pagei > 4 ) {
+$msg0 = $msgar2[0];
+$msg1 = $msgar2[1];
+$msg2 = $msgar2[2];
+$msg3 = $msgar2[3];
+
+}
+else {
+$msg0 = $msgar1[0];
+$msg1 = $msgar1[1];
+$msg2 = $msgar1[2];
+$msg3 = $msgar1[3];
+}
+
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("全くない", "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("ときどきある",  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("頻繁にある",  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いつもそうだ",  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}")
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg0, "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg1,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg2,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg3,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
