@@ -190,6 +190,15 @@ if ( $pagei > 0 ) {
 }
 
 
+if ( $pagei > 8 ) {
+
+    $tgmsg = "認知症気づきチェックの点数は ${score} 点です";
+    
+    $boti->replyText($eventi->getReplyToken(), $tgmsg);
+
+}
+
+
         
 $msgs = array(
 "財布や鍵など,物を置いた場所がわからなくなることがありますか",
