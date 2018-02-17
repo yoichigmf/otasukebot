@@ -59,7 +59,7 @@ foreach ($events as $event) {
                        if ( strcmp( $menus , "hantei" )==0  ) {
                        
                        $defmsg = "チェックをしてみましょう";
-                       hanteimenu( $bot, $event, $query,  $defsg, 0);
+                       hanteimenu( $bot, $event, $query,  $defmsg, 0);
                         continue;
                        
                        
