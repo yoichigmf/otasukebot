@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 require_once __DIR__ . '/vendor/autoload.php';
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('LineMessageAPIChannelAccessToken'));
@@ -197,7 +198,7 @@ if ( $pagei > 9 ) {
        $tgmsg ="認知症気づきチェックの点数は ${score} 点です  認知症の可能性は少ないです";
        }
      else {
-       $tgmsg ="認知症気づきチェックの点数は ${score} 点です ";
+       $tgmsg ="認知症気づきチェックの点数は ${score} 点です" . '認知機能や社会生活に支障が出ている可能性があります お近くの医療機関や相談機関に相談してみましょう ';
      
      }
   
