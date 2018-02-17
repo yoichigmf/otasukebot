@@ -73,9 +73,16 @@ foreach ($events as $event) {
                      }    
                      
                      
-                 if ( strcmp($action, "target" )==0  ) {    //  menu 選択の場合
+                 if ( strcmp($action, "target" )==0  ) {    //  連続作業の場合
                  
-                 
+                       
+                       if ( strcmp( $menus , "nintisyomenu" )==0  ) {
+                       
+                       nintisyomenu( $bot, $event, $query, $page);
+                        continue;
+                       
+                       
+                       }
                  
                      }
                      
@@ -176,6 +183,13 @@ function nintisyomenu( $boti, $eventi, $targeti, $pagei )
 parse_str($targetl, $datal);
         
 $otarget = $datal["target"];
+$score = 0;
+if ( $pagei > 0 ) {
+  $score = $datal["score"];
+
+}
+
+
         
 $msgs = array(
 "財布や鍵など,物を置いた場所がわからなくなることがありますか",
@@ -218,11 +232,16 @@ $msg2 = $msgar1[2];
 $msg3 = $msgar1[3];
 }
 
+$score1 = $score + 1;
+$score2 = $score + 2;
+$score3 = $score + 3;
+$score4 = $score + 4;
+
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg0, "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg1,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg2,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}"),
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg3,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}")
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg0, "action=target&target=${otarget}&menu=ninchisyo&page=${npage}&score=${score1}"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg1,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}&score=$score2}"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg2,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}&score=${score3}"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder($msg3,  "action=target&target=${otarget}&menu=ninchisyo&page=${npage}&score=${score4}")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
