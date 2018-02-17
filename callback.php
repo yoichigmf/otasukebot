@@ -193,7 +193,7 @@ if ( $pagei > 9 ) {
     $tgmsg = "";
     
   
-    if ( $score < 20 ) {
+    if ( intval($score) < 20 ) {
 
    
        $tgmsg ="認知症気づきチェックの点数は ${score} 点です  認知症の可能性は少ないです";
