@@ -74,7 +74,7 @@ foreach ($events as $event) {
                      
                      
                  if ( strcmp($action, "target" )==0  ) {    //  連続作業の場合
-                 
+                           $menus = $data["menu"] ;
                        
                        if ( strcmp( $menus , "nintisyomenu" )==0  ) {
                        
