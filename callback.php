@@ -58,7 +58,8 @@ foreach ($events as $event) {
                        
                        if ( strcmp( $menus , "hantei" )==0  ) {
                        
-                       hanteimenu( $bot, $event, $query, $page);
+                       $defmsg = "チェックをしてみましょう";
+                       hanteimenu( $bot, $event, $query, $page, $defsg, 0);
                         continue;
                        
                        
@@ -133,21 +134,21 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 
 
-function  hanteimenu( $boti, $eventi, $targeti )
+function  hanteimenu( $boti, $eventi, $targeti , $mnmsg, $tgscore )
 {
 
    //    $boti->replyText($eventi->getReplyToken(), $targeti);
        
        
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症きづきチェック", "action=select&menu=nintisyomenu&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症気づきチェック", "action=select&menu=nintisyomenu&page=0"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知機能・自立度振り分け", "action=select&target=jiritudo&page=0"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("最初のメニュー", "action=select&menu=topmenu"),
    
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","チェックを選べます", $img_url, $actions);
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("認知症チェック",$mnmsg, $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("困りごとの種類は？", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
@@ -182,7 +183,7 @@ else  {
 
 function nintisyomenu( $boti, $eventi, $targeti, $pagei , $score )
 {
-parse_str($targetl, $datal);
+parse_str($targeti, $datal);
         
 $otarget = $datal["target"];
 
@@ -191,8 +192,10 @@ $otarget = $datal["target"];
 if ( $pagei > 9 ) {
 
     $tgmsg = "認知症気づきチェックの点数は ${score} 点です";
+    hanteimenu( $boti, $eventi, $targeti, 0, $tgmsg, $score );
     
-    $boti->replyText($eventi->getReplyToken(), $tgmsg);
+    
+   // $boti->replyText($eventi->getReplyToken(), $tgmsg);
 
 }
 
