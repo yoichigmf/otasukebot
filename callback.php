@@ -50,7 +50,7 @@ foreach ($events as $event) {
                       
                        if ( strcmp( $menus , "nintisyomenu" )==0  ) {
                        
-                       nintisyomenu( $bot, $event, $query, $page);
+                       nintisyomenu( $bot, $event, $query, $page, 0);
                         continue;
                        
                        
@@ -78,7 +78,9 @@ foreach ($events as $event) {
                        
                        if ( strcmp( $menus , "nintisyomenu" )==0  ) {
                        
-                       nintisyomenu( $bot, $event, $query, $page);
+                         $score = $data["score"] ;
+                       
+                       nintisyomenu( $bot, $event, $query, $page, $score);
                         continue;
                        
                        
@@ -178,16 +180,12 @@ else  {
 
 }
 
-function nintisyomenu( $boti, $eventi, $targeti, $pagei )
+function nintisyomenu( $boti, $eventi, $targeti, $pagei , $score )
 {
 parse_str($targetl, $datal);
         
 $otarget = $datal["target"];
-$score = 0;
-if ( $pagei > 0 ) {
-  $score = $datal["score"];
 
-}
 
 
 if ( $pagei > 9 ) {
