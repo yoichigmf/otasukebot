@@ -169,7 +169,7 @@ $actions = array(
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("認知症情報","認知症についてのお助けメニューです", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
@@ -191,7 +191,17 @@ $otarget = $datal["target"];
 
 if ( $pagei > 9 ) {
 
-    $tgmsg = "認知症気づきチェックの点数は ${score} 点です";
+     $tgmsg = "認知症気づきチェックの点数は ${score} 点です";
+
+    $if ( $score >= 20 ) {
+       $tgmsg = $tgmsg . " 認知機能や社会生活に支障が出ている可能性があります お近くの医療機関や相談機関に相談してみましょう";
+    }
+    else {
+    
+           $tgmsg = $tgmsg . " 認知症の可能性は少ないです";
+    }
+    
+  
     hanteimenu( $boti, $eventi, $targeti, $tgmsg, $score );
     
     
