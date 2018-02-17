@@ -37,15 +37,15 @@ foreach ($events as $event) {
                $action = $data["action"];
                
                
-                 if ( strcmp($action, "select" )==0  ) {
-
-                nextmenu( $bot, $event, $data["target"] );
-                  continue;
-                     }
+                 if ( strcmp($action, "select" )==0  ) {    //  menu 選択の場合
                  
-                         
-                 if ( strcmp($action, "target" )==0  ) {
                        $menus = $data["menu"] ;
+                      
+                    if ( strcmp( $menus , "nextmenu" )==0  ) {
+                     		nextmenu( $bot, $event, $data["target"] );
+                		  continue;
+						}
+                
                        
                       
                        if ( strcmp( $menus , "nintisyomenu" )==0  ) {
@@ -68,11 +68,9 @@ foreach ($events as $event) {
                        
                       firstmessage( $bot, $event,$page);
                         continue;
-                       
-                       
                        }
 
-                     }    
+                }    
                  
                  
                 }
@@ -231,7 +229,7 @@ function firstmessage( $boti, $eventi, $pagen )
 {
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症関係?", "action=select&target=nintisyou"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症関係?", "action=select&menu=nextmenu&target=nintisyou"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活関係？", "action=select&target=seikatu"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("教育関係？", "action=select&target=kyouiku"),
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("障がい者福祉関係？", "action=select")
