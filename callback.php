@@ -59,7 +59,7 @@ foreach ($events as $event) {
                        if ( strcmp( $menus , "hantei" )==0  ) {
                        
                        $defmsg = "チェックをしてみましょう";
-                       hanteimenu( $bot, $event, $query,  $defmsg, 0);
+                       hanteimenu( $bot, $event,  $defmsg, 0);
                         continue;
                        
                        
@@ -134,7 +134,7 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 
 
-function  hanteimenu( $boti, $eventi, $targeti , $mnmsg, $tgscore )
+function  hanteimenu( $boti, $eventi, $mnmsg, $tgscore )
 {
 
     //  $boti->replyText($eventi->getReplyToken(), $targeti);
@@ -204,10 +204,10 @@ if ( $pagei > 9 ) {
      }
   
   
-    hanteimenu( $boti, $eventi, $targeti, $tgmsg, $score );
+    hanteimenu( $boti, $eventi,  $tgmsg, $score );
     
     
-   // $boti->replyText($eventi->getReplyToken(), $tgmsg);
+     $boti->replyText($eventi->getReplyToken(), $tgmsg);
 
 }
 
