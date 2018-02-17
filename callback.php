@@ -13,6 +13,9 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'), $sign);
 $page = 1;
 $action ="";
 
+$score = -1;
+
+
 foreach ($events as $event) {
 
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
@@ -34,6 +37,10 @@ foreach ($events as $event) {
             $page = $data["page"];
              }
            
+           if (isset($data["score"])) {
+            $score = $data["score"];
+             }
+             
             if (isset($data["action"])) {
                $action = $data["action"];
                
@@ -57,6 +64,13 @@ foreach ($events as $event) {
                        
                        }
                        
+                      if ( strcmp( $menus , "jiritudomenu" )==0  ) { //  自立度判定
+                          jiritudomenu( $bot, $event,  0 , $score );
+   
+                        continue;
+                       }
+                       
+                       
                        if ( strcmp( $menus , "hantei" )==0  ) {
                        
                        $defmsg = "チェックをしてみましょう";
@@ -71,6 +85,8 @@ foreach ($events as $event) {
                       firstmessage( $bot, $event,$page);
                         continue;
                        }
+                       
+                       
 
                      }    
                      
@@ -143,7 +159,7 @@ function  hanteimenu( $boti, $eventi, $mnmsg, $tgscore )
        
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症気づきチェック", "action=select&menu=nintisyomenu&page=0"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知機能・自立度振り分け", "action=select&target=jiritudo&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知機能・自立度振り分け", "action=select&target=jiritudo&menu=jiritudomenu&score=${tgscore}&target=jiritudo&page=0"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("最初のメニュー", "action=select&menu=topmenu"),
    
 );
@@ -164,7 +180,7 @@ function nextmenu( $boti, $eventi, $targeti )
 
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症って何？", "action=select&target=${targeti}&menu=nintisyo_nani&page=0"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症チェック\n自立度判定", "action=select&target=${targeti}&menu=hantei"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症チェック\n自立度判定", "action=select&target=${targeti}&menu=hantei&score=-1"),
     new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身近な地域で予防活動を", "action=target&target=${targeti}&menu=byouki"),
        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("どこに相談すれば？", "action=target")
 );
@@ -181,6 +197,31 @@ else  {
 }
 
 }
+
+
+function jiritudomenu( $boti, $eventi,  $pagei , $score )
+{
+
+  $if ($pagei == 0 ) {  //  first page
+  
+  $tgm = "日常生活に支障をきたすような症状・行動がありますか？";
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=nintisyomenu&page=1&score=${score}"),
+
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ",  "action=target&menu=nintisyomenu&page=2&score=${score}")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+  
+  }
+
+}
+
+
 
 function nintisyomenu( $boti, $eventi, $targeti, $pagei , $score )
 {
