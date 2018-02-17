@@ -63,6 +63,14 @@ foreach ($events as $event) {
                        
                        
                        }
+                       
+                      if ( strcmp( $menus , "topmenu" )==0  ) {
+                       
+                      firstmessage( $bot, $event,$page);
+                        continue;
+                       
+                       
+                       }
 
                      }    
                  
@@ -116,9 +124,9 @@ function  hanteimenu( $boti, $eventi, $targeti )
        
        
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症きづきチェック", "action=select&target=nintisyomenu&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症きづきチェック", "action=select&menu=nintisyomenu&page=0"),
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知機能・自立度振り分けチャート", "action=select&target=jiritudo&page=0"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("最初のメニュー", "action=select&target=kyouiku"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("最初のメニュー", "action=select&menu=topmenu"),
    
 );
  
