@@ -183,9 +183,7 @@ else  {
 
 function nintisyomenu( $boti, $eventi, $targeti, $pagei , $score )
 {
-//parse_str($targeti, $datal);
-        
-//$otarget = $datal["target"];
+
 
 
 
@@ -204,10 +202,11 @@ if ( $pagei > 9 ) {
      }
   
   
-   // hanteimenu( $boti, $eventi,  $tgmsg, $score );
+    hanteimenu( $boti, $eventi,  $tgmsg, $score );
+    return;
     
     
-     $boti->replyText($eventi->getReplyToken(), $tgmsg);
+   //  $boti->replyText($eventi->getReplyToken(), $tgmsg);
 
 }
 
