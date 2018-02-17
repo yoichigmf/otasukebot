@@ -191,16 +191,11 @@ function nintisyomenu( $boti, $eventi, $targeti, $pagei , $score )
 
 if ( $pagei > 9 ) {
 
-     $tgmsg = "";
+  
 
-    $if ( $score >= 20 ) {
+   
        $tgmsg ="認知症気づきチェックの点数は ${score} 点です";
-    }
-    else {
-    
-           $tgmsg = ="認知症気づきチェックの点数は ${score} 点です  認知症の可能性は少ないです";
-    }
-    
+  
   
     hanteimenu( $boti, $eventi, $targeti, $tgmsg, $score );
     
