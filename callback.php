@@ -104,7 +104,7 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 function nextmenu( $boti, $eventi, $targeti )
 {
 
- if ( strcmp($action, "nintisyo" )==0  ) {
+ if ( strcmp($targeti, "nintisyo" )==0  ) {
 
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症って何？", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
