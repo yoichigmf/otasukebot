@@ -123,7 +123,7 @@ $actions = array(
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け"チェックを選べます", $img_url, $actions);
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","チェックを選べます", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("困りごとの種類は？", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
