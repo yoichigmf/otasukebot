@@ -78,23 +78,47 @@ foreach ($events as $event) {
     
 }
 
+function  notsupport( $boti, $eventi, $targeti )
+{
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症関係?", "action=select&target=nintisyou"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活関係？", "action=select&target=seikatu"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("教育関係？", "action=select&target=kyouiku"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("障がい者福祉関係？", "action=syougai")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","困りごとの種類は？", $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("まだサポートしていません \n困りごとの種類は？", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+
+}
 
 
 
 function nextmenu( $boti, $eventi, $targeti )
 {
 
+ if ( strcmp($action, "nintisyo" )==0  ) {
+
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症かもしれない", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("介護について", "action=target&target=${targeti}&menu=kaigo"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("病気・けが", "action=targettarget=${targeti}&menu=byouki"),
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("キャンセル", "action=cancel")
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症って何？", "action=target&target=${targeti}&menu=ninchisyo&page=0"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症チェック・自立度判定", "action=target&target=${targeti}&menu=kaigo"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身近な地域で予防活動を", "action=targettarget=${targeti}&menu=byouki"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("どこに相談すれば？", "action=cancel")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
 $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("お悩み困りごとお助け","どのようなお困りごとですか？", $img_url, $actions);
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("どのようなお困りごとですか？", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+}
+
+else  {
+  notsupport( $boti, $eventi, $targeti );
+}
 
 }
 
@@ -165,10 +189,10 @@ function firstmessage( $boti, $eventi, $pagen )
 {
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症関係?", "action=select&target=parent"),
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活関係？", "action=select&target=child"),
-    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("教育関係？", "action=select&target=self"),
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("障がい者福祉関係？", "action=cancel")
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("認知症関係?", "action=select&target=nintisyou"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活関係？", "action=select&target=seikatu"),
+    new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("教育関係？", "action=select&target=kyouiku"),
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("障がい者福祉関係？", "action=syougai")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
