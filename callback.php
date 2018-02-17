@@ -204,7 +204,7 @@ function jiritudomenu( $boti, $eventi,  $pagei , $score )
 
   $if ($pagei == 0 ) {  //  first page
   
-  $tgm = "日常生活に支障をきたすような症状がありますか？";
+    $tgm = '日常生活に支障をきたすような症状・行動がありますか？';
 $actions = array(
   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=nintisyomenu&page=1&score=${score}"),
 
