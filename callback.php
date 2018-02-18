@@ -271,7 +271,7 @@ return;
     
     if ( $score >= 10 ) { //  気づきチェックリスト 20点未満
     
-            $boti->replyText($eventi->getReplyToken(), "20点未満"
+            $boti->replyText($eventi->getReplyToken(), "20点未満" );
         return;
     }
     
