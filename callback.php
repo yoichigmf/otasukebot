@@ -26,6 +26,8 @@ foreach ($events as $event) {
    
    }
    
+   error_log("not join event ");
+ 
    
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
       !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
