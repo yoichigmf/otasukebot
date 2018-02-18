@@ -312,7 +312,26 @@ return;
        }  // page == 2
        
        
+      if ($pagei == 21 ) {  //  介護予防
+  
+        
+         $msgstr = "介護予防  ${pagei}";
        
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+       if ($pagei == 20 ) {  //  自立度A
+  
+        
+         $msgstr = "自立度A  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+        
+           
+        
+        
    if ($pagei == 10 ) {  //  自立度C
   
         
