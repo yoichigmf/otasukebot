@@ -540,6 +540,6 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 
 
-}
+
 
 ?>
