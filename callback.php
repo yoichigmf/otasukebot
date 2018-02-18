@@ -263,7 +263,7 @@ return;
        
     if ($pagei == 2 ) {  //  日常生活に支障  がない
 
-    if ( $score >= 20 ) {   //  気づきチェックリスト 20点以上
+    if ( $score >= 20 ) {   //  気づきチェックリスト 20点以上  自立度 B
     
         $boti->replyText($eventi->getReplyToken(), "20点以上" );
         return;
@@ -271,8 +271,23 @@ return;
     
     if ( $score >= 10 ) { //  気づきチェックリスト 20点未満
     
-            $boti->replyText($eventi->getReplyToken(), "20点未満" );
-        return;
+    $tgm = "物忘れが気になりますか?";
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=jiritudomenu&page=30&score=${score}"),
+
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ",  "action=target&menu=jiritudomenu&page=31&score=${score}"),
+   
+  
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+return;
+
     }
     
     //  気づきチェックリストからはきていないかやっていない
@@ -295,6 +310,51 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 return;
        
        }  // page == 2
+       
+       
+       
+   if ($pagei == 10 ) {  //  自立度C
+  
+        
+         $msgstr = "自立度C  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+        
+    if ($pagei == 11 ) {  //  自立度D
+        
+         $msgstr = "自立度D  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }    
+        
+    if ($pagei == 12 ) {  //  自立度E
+        
+         $msgstr = "自立度E  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }      
+           
+        
+  if ($pagei == 30 ) {  //  自立度A
+        
+         $msgstr = "自立度A  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+        
+  if ($pagei == 31 ) {  //  介護予防へ
+  
+        $msgstr = "介護予防  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        
+        return;
+        }
        
        
   $msgstr = "自立度判定 page  ${pagei}";
