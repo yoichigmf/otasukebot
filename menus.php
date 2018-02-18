@@ -43,5 +43,7 @@ $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("困りごとの種類は？", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
+}
+
 
 ?>
