@@ -257,13 +257,13 @@ $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度B", $bu
 
        
        
-       my $multipleMessageBuilder = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       my $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
-       $multipleMessageBuilder->add( $msgB )
+       $multiplemsg->add( $msgB )
                            ->add( $msg );
                            
     
-        $boti->replyMessage($eventi->getReplyToken(), $multipleMessageBuilder );
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
         return;
 
 }
