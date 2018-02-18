@@ -238,6 +238,36 @@ else  {
 
 }
 
+function jiritudoBMenu($boti, $eventi,  $pagei) {
+
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度B 認知症の症状はあるが日常生活は自立");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("自立度B用サービス・支援", "action=browse&target=B&menu=jiritudoBMenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+$tgm = "自立度B用主なサービス・支援の内容を調べますか？";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度B", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度B", $button);
+
+       
+       
+       my $multipleMessageBuilder = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multipleMessageBuilder->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multipleMessageBuilder );
+        return;
+
+}
+
 
 function jiritudomenu( $boti, $eventi,  $pagei , $score ){
 $tgm = "";
@@ -267,11 +297,11 @@ return;
 $tgm = "支障の程度はどのくらいですか？";
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("多少ある（誰かの見守りがあれば自立)", "action=target&menu=jiritudomenu&page=10&score=${score}"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("多少ある", "action=target&menu=jiritudomenu&page=10&score=${score}"),
 
-   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("時々ある(日常生活に手助け・介護が必要)",  "action=target&menu=jiritudomenu&page=11&score=${score}"),
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("時々ある",  "action=target&menu=jiritudomenu&page=11&score=${score}"),
    
-   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("頻繁にある(常に介護が必要)",  "action=target&menu=jiritudomenu&page=12&score=${score}")
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("頻繁にある",  "action=target&menu=jiritudomenu&page=12&score=${score}")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
@@ -287,7 +317,8 @@ return;
 
     if ( $score >= 20 ) {   //  気づきチェックリスト 20点以上  自立度 B
     
-        $boti->replyText($eventi->getReplyToken(), "20点以上" );
+       jiritudoBMenu($boti, $eventi,  0 );     //  自立度B メニュー
+   
         return;
     }
     
