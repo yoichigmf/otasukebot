@@ -200,11 +200,14 @@ else  {
 
 
 function jiritudomenu( $boti, $eventi,  $pagei , $score )
-{
+
+
+{$if ($pagei == 0 ) {  //  first page
 
 $tgm = "日常生活に支障をきたすような症状・行動がありますか？";
   $boti->replyText($eventi->getReplyToken(), $tgm);
        
+       }
 
 }
 
