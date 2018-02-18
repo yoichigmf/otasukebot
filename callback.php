@@ -172,7 +172,7 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 function  hanteimenu( $boti, $eventi, $mnmsg, $tgscore )
 {
 
-    //    $boti->replyText($eventi->getReplyToken(), $targeti);
+    //      $boti->replyText($eventi->getReplyToken(), $targeti);
        
        
 $actions = array(
