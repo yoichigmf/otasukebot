@@ -18,7 +18,9 @@ $score = -1;
 
 foreach ($events as $event) {
 
-   if ($event instanceof \LINE\LINEBot\Event\JoinEvent) {  // Join event
+   if ($event instanceof \LINE\LINEBot\Event\JoinEvent) {  // Join event add
+   
+       error_log("join event!");
        firstmessage( $bot, $event,0);
        continue;
    
