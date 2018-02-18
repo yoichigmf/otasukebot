@@ -206,7 +206,19 @@ $tgm = "";
 if ($pagei == 0 ) {  //  first page
 
 $tgm = "日常生活に支障をきたすような症状・行動がありますか？";
-  $boti->replyText($eventi->getReplyToken(), $tgm);
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=nintisyomenu&page=1&score=${score}"),
+
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ",  "action=target&menu=nintisyomenu&page=2&score=${score}")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+ // $boti->replyText($eventi->getReplyToken(), $tgm);
        
        }
 
