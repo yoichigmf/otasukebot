@@ -309,7 +309,7 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 return;
        
-       }  // page == 2
+       }  // page == 2  
        
        
       if ($pagei == 21 ) {  //  介護予防
