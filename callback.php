@@ -249,6 +249,7 @@ function jiritudoBMenu($boti, $eventi,  $pagei) {
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
 
 );
+
 $tgm = "自立度B用主なサービス・支援の内容を調べますか？";
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
@@ -257,7 +258,7 @@ $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度B", $bu
 
        
        
-       my $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
        $multiplemsg->add( $msgB )
                            ->add( $msg );
