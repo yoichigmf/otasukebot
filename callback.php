@@ -18,10 +18,19 @@ $score = -1;
 
 foreach ($events as $event) {
 
+   if ($event instanceof \LINE\LINEBot\Event\JoinEvent) {  // Join event
+       firstmessage( $bot, $event,0);
+       continue;
+   
+   }
+   
+   
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
       !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
       
       if (!($event instanceof \LINE\LINEBot\Event\PostbackEvent) ) {
+      
+     
              continue;
       }
       //  post back event の時の処理
