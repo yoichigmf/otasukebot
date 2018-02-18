@@ -199,7 +199,8 @@ else  {
 }
 
 
-function jiritudomenu( $boti, $eventi,  $pagei , $score )
+function jiritudomenu( $boti, $eventi,  $pagei , $score ){
+$tgm = "";
 
 
 if ($pagei == 0 ) {  //  first page
