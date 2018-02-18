@@ -2,6 +2,14 @@
 header('Content-Type: text/html; charset=UTF-8');
 require_once __DIR__ . '/vendor/autoload.php';
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+
+$log = new Logger('name');
+$log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
+
+
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('LineMessageAPIChannelAccessToken'));
 
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('LineMessageAPIChannelSecret')]);
@@ -21,13 +29,14 @@ foreach ($events as $event) {
    if ($event instanceof \LINE\LINEBot\Event\JoinEvent) {  // Join event add
    
     
-       file_put_contents("php://stderr", "join event!\n");
+    $log->addWarning("join event!\n");
+
        firstmessage( $bot, $event,0);
        continue;
    
    }
-      file_put_contents("php://stderr", "not join event \n");
-   
+    
+    $log->addWarning("not join event \n");
    
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
       !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
