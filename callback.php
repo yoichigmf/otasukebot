@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 require_once __DIR__ . '/vendor/autoload.php';
-require "menu.php"; //menu.phpのプログラムを使うよ
+require "menus.php"; //menus.phpのプログラムを使うよ
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
