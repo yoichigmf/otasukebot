@@ -20,14 +20,14 @@ foreach ($events as $event) {
 
    if ($event instanceof \LINE\LINEBot\Event\JoinEvent) {  // Join event add
    
-       error_log("join event!");
+    
+       file_put_contents("php://stderr", "join event!\n");
        firstmessage( $bot, $event,0);
        continue;
    
    }
+      file_put_contents("php://stderr", "not join event \n");
    
-   error_log("not join event ");
- 
    
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
       !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
