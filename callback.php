@@ -103,9 +103,27 @@ foreach ($events as $event) {
                        
                        
                        }   // menus == nintisyomenu
+                       
+                       
+                       if ( strcmp( $menus , "jiritudomenu" )==0  ) {
+                       
+                         $score = $data["score"] ;
+                       
+                       jiritudomenu( $bot, $event, $page, $score);
+                        continue;
+                       
+                       
+                       }   // menus == jiritudomenu
+                       
+                       
+                       
+                       
+                       
                  
                      }  // action == target
                      
+                 
+                 
                  
                  
                  
@@ -208,9 +226,9 @@ if ($pagei == 0 ) {  //  first page
 $tgm = "日常生活に支障をきたすような症状・行動がありますか？";
 
 $actions = array(
-  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=nintisyomenu&page=1&score=${score}"),
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=jiritudomenu&page=1&score=${score}"),
 
-       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ",  "action=target&menu=nintisyomenu&page=2&score=${score}")
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ",  "action=target&menu=jiritudomenu&page=2&score=${score}")
 );
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
@@ -218,11 +236,72 @@ $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
- // $boti->replyText($eventi->getReplyToken(), $tgm);
+return;
        
-       }
+       }   //  page == 0
+       
+  if ($pagei == 1 ) {  //  日常生活に支障  程度
 
-}
+$tgm = "支障の程度はどのくらいですか？";
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("多少ある（誰かの見守りがあれば自立)", "action=target&menu=jiritudomenu&page=10&score=${score}"),
+
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("時々ある(日常生活に手助け・介護が必要)",  "action=target&menu=jiritudomenu&page=11&score=${score}"),
+   
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("頻繁にある(常に介護が必要)",  "action=target&menu=jiritudomenu&page=12&score=${score}")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+return;
+       
+       }    //  page == 1
+       
+    if ($pagei == 2 ) {  //  日常生活に支障  がない
+
+    if ( $score >= 20 ) {   //  気づきチェックリスト 20点以上
+    
+        $boti->replyText($eventi->getReplyToken(), "20点以上" );
+        return;
+    }
+    
+    if ( $score >= 10 ) { //  気づきチェックリスト 20点未満
+    
+            $boti->replyText($eventi->getReplyToken(), "20点未満"
+        return;
+    }
+    
+    //  気づきチェックリストからはきていないかやっていない
+    
+$tgm = "認知症気付きチェックリストの合計点は20点以上でしたか？";
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("20点以上", "action=target&menu=jiritudomenu&page=20&score=${score}"),
+
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("20点未満",  "action=target&menu=jiritudomenu&page=21&score=${score}"),
+   
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("気付きチェックリストをやる",  "action=select&menu=nintisyomenu&page=0")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+return;
+       
+       }  // page == 2
+       
+       
+  $msgstr = "自立度判定 page  ${pagei}";
+       
+ $boti->replyText($eventi->getReplyToken(), $msgstr );
+
+}  
 
 
 
