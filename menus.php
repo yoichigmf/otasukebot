@@ -6,6 +6,41 @@ use Monolog\Handler\StreamHandler;
 
 
 
+function servicemenu($boti, $eventi, $target,  $pagei) {
+
+$jiritudo = $target;   //  A B C D が入っている
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度C 誰かの見守りがあれば日常生活は自立");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", "action=browse&target=C&menu=servicemenu&page=1"),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("権利擁護", "action=browse&target=C&menu=servicemenu&page=1"),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("社会参加・仲間づくり支援", "action=browse&target=C&menu=servicemenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("役割支援",  "action=select&menu=topmenu")
+
+);
+
+
+$tgm = "自立度${jiritudo}向け サービス・支援検索";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度C", $button);
+
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
 
 function jiritudoCMenu($boti, $eventi,  $pagei) {
 
@@ -14,7 +49,7 @@ function jiritudoCMenu($boti, $eventi,  $pagei) {
        
        
        $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=C&menu=servicemenu&page=1"),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
 
 );
@@ -45,7 +80,7 @@ function jiritudoDMenu($boti, $eventi,  $pagei) {
        
        
        $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=D&menu=servicemenu&page=1"),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
 
 );
@@ -78,7 +113,7 @@ function jiritudoEMenu($boti, $eventi,  $pagei) {
        
        
        $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=E&menu=servicemenu&page=1"),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
 
 );
@@ -112,7 +147,7 @@ function jiritudoAMenu($boti, $eventi,  $pagei) {
        
        
        $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=servicemenu&page=1"),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
 
 );
@@ -144,7 +179,7 @@ function jiritudoBMenu($boti, $eventi,  $pagei) {
        
        
        $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=B&menu=jiritudoBMenu&page=1"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=B&menu=servicemenu&page=1"),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
 
 );

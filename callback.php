@@ -146,7 +146,13 @@ foreach ($events as $event) {
                      }  // action == target
                      
                  
-                 
+                  if ( strcmp($action, "browse" )==0  ) {    //  browse サービス・支援検索 
+                  
+                      $tg = $data["target"];
+                      servicemenu($bot, $event, $tg,  $page) {
+                      
+                      continue;
+                  }
                  
                  
                  
