@@ -191,68 +191,7 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 }
 
 
-function jiritudoBMenu($boti, $eventi,  $pagei) {
 
-    
-       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度Bです 認知症の症状はあるが日常生活は自立");
-       
-       
-       $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=B&menu=jiritudoBMenu&page=1"),
-             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
-
-);
-
-$tgm = "自立度Bの方向けの主なサービス・支援の内容を調べますか？";
- 
-$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度B", $tgm , $img_url, $actions);
-$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度B", $button);
-
-       
-       
-       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
-       
-       $multiplemsg->add( $msgB )
-                           ->add( $msg );
-                           
-    
-        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
-        return;
-
-}
-
-
-function jiritudoAMenu($boti, $eventi,  $pagei) {
-
-    
-       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度A 軽度認知障害(MCI)・認知症の疑い");
-       
-       
-       $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
-             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
-
-);
-
-$tgm = "自立度A用主なサービス・支援の内容を調べますか？";
- 
-$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度A", $tgm , $img_url, $actions);
-$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度A", $button);
-
-       
-       
-       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
-       
-       $multiplemsg->add( $msgB )
-                           ->add( $msg );
-                           
-    
-        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
-        return;
-
-}
 
 
 function jiritudomenu( $boti, $eventi,  $pagei , $score ){
@@ -364,7 +303,8 @@ return;
         
          $msgstr = "自立度A  ${pagei}";
        
-        $boti->replyText($eventi->getReplyToken(), $msgstr );
+           jiritudoAMenu($boti, $eventi,  0 );     //  自立度A メニュー
+        //$boti->replyText($eventi->getReplyToken(), $msgstr );
         return;
         }
         
@@ -375,8 +315,11 @@ return;
   
         
          $msgstr = "自立度C  ${pagei}";
+         
+         
+          jiritudoCMenu($boti, $eventi,  0 );     //  自立度C メニュー
        
-        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        //$boti->replyText($eventi->getReplyToken(), $msgstr );
         return;
         }
         
@@ -384,7 +327,8 @@ return;
         
          $msgstr = "自立度D  ${pagei}";
        
-        $boti->replyText($eventi->getReplyToken(), $msgstr );
+       jiritudoDMenu($boti, $eventi,  0 );     //  自立度D メニュー
+       // $boti->replyText($eventi->getReplyToken(), $msgstr );
         return;
         }    
         
@@ -392,7 +336,8 @@ return;
         
          $msgstr = "自立度E  ${pagei}";
        
-        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        jiritudoEMenu($boti, $eventi,  0 );     //  自立度E メニュー
+       // $boti->replyText($eventi->getReplyToken(), $msgstr );
         return;
         }      
            
@@ -401,7 +346,8 @@ return;
         
          $msgstr = "自立度A  ${pagei}";
        
-        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        jiritudoAMenu($boti, $eventi,  0 );     //  自立度A メニュー
+      //  $boti->replyText($eventi->getReplyToken(), $msgstr );
         return;
         }
         

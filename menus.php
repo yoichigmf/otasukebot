@@ -5,6 +5,173 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 
+
+
+function jiritudoCMenu($boti, $eventi,  $pagei) {
+
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度C 誰かの見守りがあれば日常生活は自立");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+
+$tgm = "自立度C用主なサービス・支援の内容を調べますか？";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度C", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度C", $button);
+
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
+function jiritudoDMenu($boti, $eventi,  $pagei) {
+
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度D 日常生活に手助け・介護が必要");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+
+$tgm = "自立度D用主なサービス・支援の内容を調べますか？";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度D", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度D", $button);
+
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
+
+
+function jiritudoEMenu($boti, $eventi,  $pagei) {
+
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度E 常に介護が必要");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+
+$tgm = "自立度E用主なサービス・支援の内容を調べますか？";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度E", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度E", $button);
+
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
+
+
+
+function jiritudoAMenu($boti, $eventi,  $pagei) {
+
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度A 軽度認知障害(MCI)・認知症の疑い");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=A&menu=jiritudoAMenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+
+$tgm = "自立度A用主なサービス・支援の内容を調べますか？";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度A", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度A", $button);
+
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
+
+function jiritudoBMenu($boti, $eventi,  $pagei) {
+
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度Bです 認知症の症状はあるが日常生活は自立");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=B&menu=jiritudoBMenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+
+$tgm = "自立度Bの方向けの主なサービス・支援の内容を調べますか？";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度B", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度B", $button);
+
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
+
+
+
+
 function  hanteimenu( $boti, $eventi, $mnmsg, $tgscore )
 
 {
