@@ -149,7 +149,7 @@ foreach ($events as $event) {
                   if ( strcmp($action, "browse" )==0  ) {    //  browse サービス・支援検索 
                   
                       $tg = $data["target"];
-                      servicemenu($bot, $event, $tg,  $page) {
+                      servicemenu($bot, $event, $tg,  $page);
                       
                       continue;
                   }
