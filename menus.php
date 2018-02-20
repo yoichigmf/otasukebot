@@ -10,7 +10,7 @@ function servicemenu($boti, $eventi, $target,  $pagei) {
 
 $jiritudo = $target;   //  A B C D が入っている
     
-       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度C 誰かの見守りがあれば日常生活は自立");
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
        
        
        $actions = array(
@@ -22,18 +22,28 @@ $jiritudo = $target;   //  A B C D が入っている
 );
 
 
+   
+       $actions2 = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("安否確認・見守り支援", "action=browse&target=C&menu=servicemenu&page=1"),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("医療系サービス", "action=browse&target=C&menu=servicemenu&page=1"),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活支援", "action=browse&target=C&menu=servicemenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身体的ケア",  "action=select&menu=topmenu")
+
+);
+
 $tgm = "自立度${jiritudo}向け サービス・支援検索";
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
 $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm , $img_url, $actions);
-$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度C", $button);
-
-       
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button);
+$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm , $img_url, $actions2);
+$msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button2);     
        
        $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
        $multiplemsg->add( $msgB )
-                           ->add( $msg );
+                           ->add( $msg )
+                           ->add($msg2 );
                            
     
         $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
