@@ -14,19 +14,19 @@ $jiritudo = $target;   //  A B C D が入っている
        
        
        $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", "action=browse&rank=${jiritudo}&target=相談&menu=servicemenu&page=1"),
-                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("権利擁護", "action=browse&rank=${jiritudo}&target=権利擁護&menu=servicemenu&page=1"),
-                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("社会参加・仲間づくり支援", "action=browse&rank=${jiritudo}&target=社会参加・仲間づくり支援&menu=servicemenu&page=1"),
-             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("役割支援",  "action=browse&rank=${jiritudo}&target=役割支援&menu=servicemenu&page=1")
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", "action=browse&rank=${jiritudo}&target=相談&menu=servicemenu&page=2"),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("権利擁護", "action=browse&rank=${jiritudo}&target=権利擁護&menu=servicemenu&page=2"),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("社会参加・仲間づくり支援", "action=browse&rank=${jiritudo}&target=社会参加・仲間づくり支援&menu=servicemenu&page=2"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("役割支援",  "action=browse&rank=${jiritudo}&target=役割支援&menu=servicemenu&page=2")
 
 );
 
 
    
        $actions2 = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("安否確認・見守り支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=1"),
-                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("医療系サービス", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=1"),
-                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=1"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("安否確認・見守り支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("医療系サービス", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身体的ケア",  "action=select&menu=topmenu")
 
 );
