@@ -6,7 +6,7 @@ use Monolog\Handler\StreamHandler;
 
 
 
-function servicemenu($boti, $eventi, $target,  $pagei) {
+function servicemenu($boti, $eventi, $target,  $pagei) { 
 
 $jiritudo = $target;   //  A B C D が入っている
     
