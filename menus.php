@@ -12,6 +12,7 @@ $jiritudo = $target;   //  A B C D が入っている
     
        $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
        
+               $boti->replyMessage($eventi->getReplyToken(), $msgb );
        
        $actions = array(
          new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", "action=browse&target=${jiritudo}&kind=1&menu=servicemenu&page=2"),
