@@ -148,7 +148,7 @@ foreach ($events as $event) {
                  
                   if ( strcmp($action, "browse" )==0  ) {    //  browse サービス・支援検索 
                   
-                      if ( $page > 0 ) {
+                      if ( $page > 1 ) {
                     $bot->replyText($event->getReplyToken(), $query);
                   
                         }
