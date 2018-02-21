@@ -30,7 +30,7 @@ foreach ($events as $event) {
    if ($event instanceof \LINE\LINEBot\Event\JoinEvent) {  // Join event add
    
     
-    $log->addWarning("join event!\n");
+   // $log->addWarning("join event!\n");
 
        firstmessage( $bot, $event,0);
        continue;
@@ -52,10 +52,13 @@ foreach ($events as $event) {
       
        $query = $event->getPostbackData();
        
+         $log->addWarning("query ${query}\n");
+       
          if ($query) {
         // Querystringをパースして配列に戻す
            parse_str($query, $data);
            
+
            if (isset($data["page"])) {
             $page = $data["page"];
              }
@@ -148,13 +151,20 @@ foreach ($events as $event) {
                  
                   if ( strcmp($action, "browse" )==0  ) {    //  browse サービス・支援検索 
                   
-                      if ( $page > 1 ) {
-                          $bot->replyText($event->getReplyToken(), $query);
+                    //  if ( $page > 1 ) {
+                         // $bot->replyText($event->getReplyToken(), $query);
                   
-                        }
+                    //    }
                         
                         
-                      $tg = $data["target"];
+                        if (isset($data["target"])) {
+          					  $tg = $data["target"];
+            			 }
+            			else {
+            			  $tg ="A";
+            			}
+             
+                    
                       browsemenu($bot, $event, $tg,  $page);
                       
                       continue;
