@@ -9,6 +9,185 @@ use Monolog\Handler\StreamHandler;
 
 
 
+
+
+
+function jiritudomenu( $boti, $eventi,  $pagei , $score ){
+$tgm = "";
+
+
+if ($pagei == 0 ) {  //  first page
+
+$tgm = "日常生活に支障をきたすような症状・行動がありますか？";
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=jiritudomenu&page=1&score=${score}"),
+
+       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ",  "action=target&menu=jiritudomenu&page=2&score=${score}")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+return;
+       
+       }   //  page == 0
+       
+  if ($pagei == 1 ) {  //  日常生活に支障  程度
+
+$tgm = "支障の程度はどのくらいですか？";
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("多少ある", "action=target&menu=jiritudomenu&page=10&score=${score}"),
+
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("時々ある",  "action=target&menu=jiritudomenu&page=11&score=${score}"),
+   
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("頻繁にある",  "action=target&menu=jiritudomenu&page=12&score=${score}")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+return;
+       
+       }    //  page == 1
+       
+    if ($pagei == 2 ) {  //  日常生活に支障  がない
+
+    if ( $score >= 20 ) {   //  気づきチェックリスト 20点以上  自立度 B
+    
+       jiritudoBMenu($boti, $eventi,  0 );     //  自立度B メニュー
+   
+        return;
+    }
+    
+    if ( $score >= 10 ) { //  気づきチェックリスト 20点未満
+    
+    $tgm = "物忘れが気になりますか?";
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("はい", "action=target&menu=jiritudomenu&page=30&score=${score}"),
+
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("いいえ",  "action=target&menu=jiritudomenu&page=31&score=${score}"),
+   
+  
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+return;
+
+    }
+    
+    //  気づきチェックリストからはきていないかやっていない
+    
+$tgm = "認知症気付きチェックリストの合計点は20点以上でしたか？";
+
+$actions = array(
+  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("20点以上", "action=target&menu=jiritudomenu&page=20&score=${score}"),
+
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("20点未満",  "action=target&menu=jiritudomenu&page=21&score=${score}"),
+   
+   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("気付きチェックリストをやる",  "action=select&menu=nintisyomenu&page=0")
+);
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度振り分けチャート", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度振り分けチャート", $button);
+$res = $boti->replyMessage($eventi->getReplyToken(),$msg);
+
+return;
+       
+       }  // page == 2    
+       
+       
+      if ($pagei == 21 ) {  //  介護予防
+  
+        
+         $msgstr = "介護予防  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+       if ($pagei == 20 ) {  //  自立度A
+  
+        
+         $msgstr = "自立度A  ${pagei}";
+       
+           jiritudoAMenu($boti, $eventi,  0 );     //  自立度A メニュー
+        //$boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+        
+           
+        
+        
+   if ($pagei == 10 ) {  //  自立度C
+  
+        
+         $msgstr = "自立度C  ${pagei}";
+         
+         
+          jiritudoCMenu($boti, $eventi,  0 );     //  自立度C メニュー
+       
+        //$boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+        
+    if ($pagei == 11 ) {  //  自立度D
+        
+         $msgstr = "自立度D  ${pagei}";
+       
+       jiritudoDMenu($boti, $eventi,  0 );     //  自立度D メニュー
+       // $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }    
+        
+    if ($pagei == 12 ) {  //  自立度E
+        
+         $msgstr = "自立度E  ${pagei}";
+       
+        jiritudoEMenu($boti, $eventi,  0 );     //  自立度E メニュー
+       // $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }      
+           
+        
+  if ($pagei == 30 ) {  //  自立度A
+        
+         $msgstr = "自立度A  ${pagei}";
+       
+        jiritudoAMenu($boti, $eventi,  0 );     //  自立度A メニュー
+      //  $boti->replyText($eventi->getReplyToken(), $msgstr );
+        return;
+        }
+        
+  if ($pagei == 31 ) {  //  介護予防へ
+  
+        $msgstr = "介護予防  ${pagei}";
+       
+        $boti->replyText($eventi->getReplyToken(), $msgstr );
+        
+        return;
+        }
+       
+       
+  $msgstr = "自立度判定 page  ${pagei}";
+       
+ $boti->replyText($eventi->getReplyToken(), $msgstr );
+
+}  
+
+
+
+
 function jiritudoDMenu($boti, $eventi,  $pagei) {
 
     
