@@ -239,6 +239,7 @@ function srcmenu($boti, $eventi, $targeti, $kindi,  $pagei) {
 
 global $log;
 
+$kindi = "相談";
 
 $jiritudo = $targeti;   //  A B C D が入っている
 
