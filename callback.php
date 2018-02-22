@@ -429,8 +429,8 @@ $jiritudo = $targeti;   //  A B C D が入っている
 
 
 $tgm1 = "自立度${jiritudo}向け サービス・支援検索 その1";
-$tgm1 = "自立度${jiritudo}向け サービス・支援検索 その2";
-$tgm1 = "自立度${jiritudo}向け サービス・支援検索 その3";
+$tgm2 = "自立度${jiritudo}向け サービス・支援検索 その2";
+$tgm3 = "自立度${jiritudo}向け サービス・支援検索 その3";
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
 $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
@@ -440,7 +440,7 @@ $msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiri
 
 
 $button3 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm3 , $img_url, $actions3);
-$msg3 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button2);     
+$msg3 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button3);     
        
        
        
