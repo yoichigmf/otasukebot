@@ -249,7 +249,7 @@ $timeout = 20;
 $log->addWarning($tgurl);
 $response = getApiDataCurl( $tgurl, $timeout );
 
-if ( count($result) > 0 ) {
+if ( count($response) > 0 ) {
   $tgr = $response["response"];
   
   
