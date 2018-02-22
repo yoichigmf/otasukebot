@@ -44,8 +44,6 @@ foreach ($events as $event) {
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
       !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
       
-      if (!($event instanceof \LINE\LINEBot\Event\PostbackEvent) ) {
-      
      
              continue;
       }
@@ -70,7 +68,7 @@ foreach ($events as $event) {
              }
              
             if (isset($data["action"])) {
-               $action = $data["action"];
+                 $action = $data["action"];
                
                
                  if ( strcmp($action, "select" )==0  ) {    //  menu 選択の場合
@@ -396,7 +394,7 @@ function browsemenu($boti, $eventi, $targeti,  $pagei) {
 
 $jiritudo = $targeti;   //  A B C D が入っている
 
-$log->addWarning("browsemenu  ${jiritudo}\n");
+//$log->addWarning("browsemenu  ${jiritudo}\n");
     
        $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
        
