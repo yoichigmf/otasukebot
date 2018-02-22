@@ -157,7 +157,7 @@ foreach ($events as $event) {
                          // $bot->replyText($event->getReplyToken(), $query);
                   
                     //    }
-                        
+                      
                         
                         if (isset($data["target"])) {
           					  $tg = $data["target"];
@@ -166,10 +166,30 @@ foreach ($events as $event) {
             			  $tg ="A";
             			}
              
+                        $tgkind = "";
+             
+                       if (isset($data["kind"])) {
+          					  $tgkind = $data["kindt"];
+            			 }
+            			else {
+            			  $tgkind ="";
+            			}
+            			
+            			
+                      if ( $page > 1 ) {   //  検索
+                        
+                              srcmenu($bot, $event, $tg, $kind, $page);
+                      
+                                 continue;
                     
-                      browsemenu($bot, $event, $tg,  $page);
+                        
+                        
+                        }
+                      else {
+                             browsemenu($bot, $event, $tg,  $page);
                       
                       continue;
+                      }
                   }
                  
                  
@@ -211,6 +231,24 @@ $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder
 $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("まだサポートしていません \n困りごとの種類は？", $button);
 $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
+
+}
+
+
+function srcmenu($boti, $eventi, $targeti, $kindi,  $pagei) { 
+
+$jiritudo = $targeti;   //  A B C D が入っている
+
+$tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuXR5kwjE-D-YwQdQecSFvQZ/exec?action=getrows&sheetname=${kindi}&column=${targeti}";
+
+
+
+$response = file_get_contents( $tgurl );
+
+$result = json_decode($response,true);
+
+
+$log->addWarning($result);
 
 }
 
