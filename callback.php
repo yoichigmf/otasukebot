@@ -244,16 +244,102 @@ $jiritudo = $targeti;   //  A B C D が入っている
 
 $tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuXR5kwjE-D-YwQdQecSFvQZ/exec?action=getrows&sheetname=${kindi}&column=${targeti}";
 
+$timeout = 20;
+
+$log->addWarning($tgurl);
+$response = getApiDataCurl( $tgurl, $timeout );
+
+if ( count($result) > 0 ) {
+  $tgr = $response["response"];
+  
+  
+      $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+   //    $multiplemsg->add( $msgB )
+   //                        ->add( $msg )
+    //                       ->add($msg2 )
+                              ->add($msg3 );
+                           
+    
+      
+        
+        
+  if ( count($tgr) > 0 ) {
+       foreach($tgr as $value){
+         $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
+     // print "\n${value}";
+	    }
+  
+   }
+   
+     $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+   
+}
+else  {
+
+$log->addWarning("query error\n");
+} 
 
 
-$response = file_get_contents( $tgurl );
 
-$result = json_decode($response,true);
-
-
-$log->addWarning($result);
 
 }
+
+
+function getApiDataCurl($url, $timeout )
+{
+   
+
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url); 
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, $timeout );
+
+curl_setopt($ch,CURLOPT_FOLLOWLOCATION,true);
+//最大何回リダイレクトをたどるか
+curl_setopt($ch,CURLOPT_MAXREDIRS,10);
+//リダイレクトの際にヘッダのRefererを自動的に追加させる
+curl_setopt($ch,CURLOPT_AUTOREFERER,true);
+
+$content = trim(curl_exec($ch));
+    
+
+    $info    = curl_getinfo($ch);
+    $errorNo = curl_errno($ch);
+    
+    curl_close($ch);
+    
+    
+
+    //p
+    
+    
+    // OK以外はエラーなので空白配列を返す
+    if ($errorNo !== CURLE_OK) {
+
+        return [];
+    }
+
+    // 200以外のステータスコードは失敗とみなし空配列を返す
+    if ($info['http_code'] !== 200) {
+        return [];
+    }
+
+    print "\nok\n";
+    print "content = ${content}\n";
+    
+
+    // 文字列から変換
+    $jsonArray = json_decode($content, true);
+
+    return $jsonArray;
+}
+
 
 
 
