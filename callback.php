@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 require_once __DIR__ . '/vendor/autoload.php';
-require "menus.php"; //menus.phpのプログラムを使うよ
+
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -23,6 +23,8 @@ $page = 1;
 $action ="";
 
 $score = -1;
+require "menus.php"; //menus.phpのプログラムを使うよ
+
 
 
 foreach ($events as $event) {
