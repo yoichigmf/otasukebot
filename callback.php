@@ -392,6 +392,107 @@ return;
 }  
 
 
+function browsemenu($boti, $eventi, $targeti,  $pagei) { 
+
+$jiritudo = $targeti;   //  A B C D が入っている
+
+$log->addWarning("browsemenu  ${target}\n");
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
+       
+       //        $boti->replyMessage($eventi->getReplyToken(), $msgB );
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", "action=browse&target=${jiritudo}&kind=1&menu=servicemenu&page=2"),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("権利擁護", "action=browse&target=${jiritudo}&kind=2&menu=servicemenu&page=2"),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("社会参加・仲間づくり支援", "action=browse&target=${jiritudo}&kind=3&menu=servicemenu&page=2"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("役割支援",  "action=browse&target=${jiritudo}&kind=4&menu=servicemenu&page=2")
+
+);
+
+
+   
+       $actions2 = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("安否確認・見守り支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("医療系サービス", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身体的ケア",  "action=select&menu=topmenu")
+
+);
+
+       $actions3 = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("家族・介護者支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=1"),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("住まい・居住系サービス", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+
+
+$tgm1 = "自立度${jiritudo}向け サービス・支援検索 その1";
+$tgm1 = "自立度${jiritudo}向け サービス・支援検索 その2";
+$tgm1 = "自立度${jiritudo}向け サービス・支援検索 その3";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button);
+$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm2 , $img_url, $actions2);
+$msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button2);     
+
+
+$button3 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm3 , $img_url, $actions3);
+$msg3 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button2);     
+       
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg )
+                           ->add($msg2 )
+                              ->add($msg3 );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
+
+function jiritudoCMenu($boti, $eventi,  $pagei) {
+
+    
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度C 誰かの見守りがあれば日常生活は自立");
+       
+       
+       $actions = array(
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("サービス・支援検索", "action=browse&target=C&menu=servicemenu&page=1"),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
+
+);
+
+$tgm = "自立度C用主なサービス・支援の内容を調べますか？";
+ 
+$img_url = "https://otasukebot.herokuapp.com/otasuke.png";
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度C", $tgm , $img_url, $actions);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度C", $button);
+
+       
+       
+       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+       $multiplemsg->add( $msgB )
+                           ->add( $msg );
+                           
+    
+        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+        return;
+
+}
+
+
+
+
+
 
 function nintisyomenu( $boti, $eventi, $targeti, $pagei , $score )
 {
