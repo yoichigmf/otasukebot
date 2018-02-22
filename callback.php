@@ -237,6 +237,9 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 function srcmenu($boti, $eventi, $targeti, $kindi,  $pagei) { 
 
+global $log;
+
+
 $jiritudo = $targeti;   //  A B C D が入っている
 
 $tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuXR5kwjE-D-YwQdQecSFvQZ/exec?action=getrows&sheetname=${kindi}&column=${targeti}";
