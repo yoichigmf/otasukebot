@@ -4,15 +4,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-$log2 = new Logger('name');
-$log2->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
+//$log2 = new Logger('name');
+//$log2->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
 
 
 function browsemenu($boti, $eventi, $target,  $pagei) { 
 
 $jiritudo = $target;   //  A B C D が入っている
 
- $log2->addWarning("browsemenu  ${target}\n");
+ //$log2->addWarning("browsemenu  ${target}\n");
     
        $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
        
