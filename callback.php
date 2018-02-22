@@ -44,6 +44,8 @@ foreach ($events as $event) {
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
       !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
       
+      if (!($event instanceof \LINE\LINEBot\Event\PostbackEvent) ) {
+      
      
              continue;
       }
@@ -68,7 +70,7 @@ foreach ($events as $event) {
              }
              
             if (isset($data["action"])) {
-                 $action = $data["action"];
+                  $action = $data["action"];
                
                
                  if ( strcmp($action, "select" )==0  ) {    //  menu 選択の場合
