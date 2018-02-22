@@ -37,7 +37,7 @@ foreach ($events as $event) {
    
    }
     
-    $log->addWarning("not join event \n");
+   // $log->addWarning("not join event \n");
    
    if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
       !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {

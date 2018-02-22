@@ -9,6 +9,8 @@ use Monolog\Handler\StreamHandler;
 function browsemenu($boti, $eventi, $target,  $pagei) { 
 
 $jiritudo = $target;   //  A B C D が入っている
+
+ $log->addWarning("browsemenu  ${target}\n");
     
        $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
        
