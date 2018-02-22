@@ -178,7 +178,7 @@ foreach ($events as $event) {
             			
                       if ( $page > 1 ) {   //  検索
                         
-                              srcmenu($bot, $event, $tg, $kind, $page);
+                              srcmenu($bot, $event, $tg, $tgkind, $page);
                       
                                  continue;
                     
