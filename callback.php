@@ -169,7 +169,7 @@ foreach ($events as $event) {
                         $tgkind = "";
              
                        if (isset($data["kind"])) {
-          					  $tgkind = $data["kindt"];
+          					  $tgkind = $data["kind"];
             			 }
             			else {
             			  $tgkind ="";
