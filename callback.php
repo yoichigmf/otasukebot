@@ -249,7 +249,7 @@ global $log;
 
 $jiritudo = $targeti;   //  A B C D が入っている
 
- $q1 = [ 'action'=>'getrows', 'target'=>${jiritudo}, 'sheetname'=>${kindi}, 'column'=> ${jiritudo} ];
+ $q1 = [ 'action'=>'getrows', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> $jiritudo ];
        
        $qstr1 = http_build_query($q1);
        
@@ -275,34 +275,67 @@ if ( count($response) > 0 ) {
 
                            
     
-   $ct = 1;
+   $ct = 0;
+   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> ${jiritudo}, query="" ];
         
+        
+        
+  $mnn = ( $num + 3 ) / 4;  //  ページ数
+  
+  
+    $ncount = 0;
+    
+    $buttons = array();
+    
+
+           $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+    $actions = array();
   // $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
   if ( $num > 0 ) {
            foreach($tgr as $value){
            
-              if ( $ct < 5 )
+              if ( $ct < 4 )
                       {
                       $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
                       
+                       $q2["query"] = $value;
+                       
+                       
+                       $qstr2 = http_build_query($q2);  
+                       
+                       array_push($actions[], \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder( $value, $qstr2 ));
+                       
+                       
                        $log->addWarning("add text ${value}\n");
+                       
+                         ++$ct;
                        }
                   else  {
                                          $log->addWarning("can't add text ${value}\n");
+                                         
+                            $nn = $ncount + 1;
                   
+                           $tgm1 = "自立度${jiritudo}向け ${kindi} サービス・支援検索 その${nn}";
+                           $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm , $img_url, $actions);
+                           $msgb = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo} ${kindi}", $button); 
+                            $multiplemsg->add( $msgB )
+                           $ct = 0;
+                           ++$ncount;
+                           
                        }
                   
                   
-                  ++$ct;
+                
                   
      
-	    }
+	         }// foreach
   
-       }
+       } // if $num > 0
    
-    $res =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+   // $res =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
     
-     $log->addWarning("message send status ${res}\n");
+      $res =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+   //$log->addWarning("message send status ${res}\n");
    
 }
 else  {
