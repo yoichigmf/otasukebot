@@ -358,7 +358,7 @@ $jiritudo = $targeti;   //  A B C D が入っている
        
        $q1 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"相談", 'menu'=>'servicemenu', 'page'=>'2' ];
        
-       $qstr1 = http_buildquery($q1);
+       $qstr1 = http_build_query($q1);
        
        
        $actions = array(
