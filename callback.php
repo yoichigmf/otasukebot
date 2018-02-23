@@ -276,7 +276,7 @@ if ( count($response) > 0 ) {
                            
     
    $ct = 0;
-   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> $jiritudo, 'query'=>"" ];
+   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'query'=>"" ];
         
         
         
@@ -300,7 +300,7 @@ if ( count($response) > 0 ) {
                       {
                       $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
                       
-                       $q2["query"] = $value;
+                       $q2["query"] = $value;  // debug
                        
                        
                        $qstr2 = http_build_query($q2);  
