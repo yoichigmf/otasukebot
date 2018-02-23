@@ -498,7 +498,7 @@ if ($response->isSucceeded()) {
     return;
 }
 
-  $log->addWarning("error ". $response->getHTTPStatus() . ' ' . $response->getRawBody(););
+  $log->addWarning("error ". $response->getHTTPStatus() . ' ' . $response->getRawBody());
 
 
      //  $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
