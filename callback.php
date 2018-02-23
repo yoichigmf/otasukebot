@@ -380,14 +380,16 @@ $log->addWarning("error status  ${errorNo}\n");
 
 function browsemenu($boti, $eventi, $targeti,  $pagei) { 
 
-$jiritudo = $targeti;   //  A B C D が入っている
+global $log;
 
-//$log->addWarning("browsemenu  ${jiritudo}\n");
+//$jiritudo = $targeti;   //  A B C D が入っている
+
+$log->addWarning("browsemenu  ${targeti}\n");
 
 
 $columns = array();
     
-       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
+       $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${targeti}");
        
        //        $boti->replyMessage($eventi->getReplyToken(), $msgB );
        
@@ -460,7 +462,7 @@ $columns = array();
 
 );
 
-
+$log->addWarning("mkbutton  ${targeti}\n");
 $tgm1 = "自立度${targeti}向け サービス・支援検索 その1";
 $tgm2 = "自立度${targeti}向け サービス・支援検索 その2";
 $tgm3 = "自立度${targeti}向け サービス・支援検索 その3";
@@ -486,8 +488,10 @@ $button3 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilde
 $columns[] = $column3;      
        
        $carousel = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder($columns);
-$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${targeti}向けサービス・支援検索", $carousel);
-$boti->replyMessage($eventi->getReplyToken(),$msg);
+$msg_c = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${targeti}向けサービス・支援検索", $carousel);
+
+$log->addWarning("return corousel   ${targeti}\n");
+$boti->replyMessage($eventi->getReplyToken(),$msg_c);
      //  $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
      //  $multiplemsg->add( $msgB )
