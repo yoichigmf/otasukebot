@@ -356,8 +356,13 @@ $jiritudo = $targeti;   //  A B C D が入っている
        
        //        $boti->replyMessage($eventi->getReplyToken(), $msgB );
        
+       $q1 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"相談", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr1 = http_buildquery($q1);
+       
+       
        $actions = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", "action=browse&target=${jiritudo}&kind=相談&menu=servicemenu&page=2"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", $qstr1 ),
                 new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("権利擁護", "action=browse&target=${jiritudo}&kind=権利擁護&menu=servicemenu&page=2"),
                        new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("社会参加・仲間づくり支援", "action=browse&target=${jiritudo}&kind=社会参加・仲間づくり支援&menu=servicemenu&page=2"),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("役割支援",  "action=browse&target=${jiritudo}&kind=役割支援&menu=servicemenu&page=2")
