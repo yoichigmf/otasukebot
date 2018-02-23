@@ -298,7 +298,7 @@ if ( count($response) > 0 ) {
            
               if ( $ct < 4 )
                       {
-                      $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
+                     // $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
                       
                        $q2["query"] = $value;  // debug
                        
