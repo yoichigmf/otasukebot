@@ -393,45 +393,45 @@ $columns = array();
        
        //        $boti->replyMessage($eventi->getReplyToken(), $msgB );
        
-       $q1 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"相談", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q1 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"相談", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr1 = http_build_query($q1);
        
-       $q2 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"権利擁護", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q2 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"権利擁護", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr2 = http_build_query($q2);
        
-       $q3 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"社会参加・仲間づくり支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q3 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"社会参加・仲間づくり支援", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr3 = http_build_query($q3);
        
-       $q4 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"役割支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q4 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"役割支援", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr4 = http_build_query($q4);
              
-       $q5 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"安否確認・見守り支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q5 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"安否確認・見守り支援", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr5 = http_build_query($q5);   
        
        
-       $q6 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"医療系サービス", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q6 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"医療系サービス", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr6 = http_build_query($q6);     
        
        
-       $q7 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"生活支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q7 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"生活支援", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr7 = http_build_query($q7);    
        
-       $q8 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"身体的ケア", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q8 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"身体的ケア", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr8 = http_build_query($q8);  
       
-       $q9 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"家族・介護者支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q9 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"家族・介護者支援", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr9 = http_build_query($q9);  
        
-       $q10 = [ 'action'=>'browse', 'target'=>${targeti}, 'kind'=>"住まい・居住系サービス", 'menu'=>'servicemenu', 'page'=>'2' ];
+       $q10 = [ 'action'=>'browse', 'target'=>$targeti, 'kind'=>"住まい・居住系サービス", 'menu'=>'servicemenu', 'page'=>'2' ];
        
        $qstr10 = http_build_query($q10);  
        
