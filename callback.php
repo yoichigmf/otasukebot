@@ -491,7 +491,16 @@ $columns[] = $column3;
 $msg_c = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${targeti}向けサービス・支援検索", $carousel);
 
 $log->addWarning("return corousel   ${targeti}\n");
-$boti->replyMessage($eventi->getReplyToken(),$msg_c);
+$response = $boti->replyMessage($eventi->getReplyToken(),$msg_c);
+
+if ($response->isSucceeded()) {
+    $log->addWarning("success");
+    return;
+}
+
+  $log->addWarning("error ". $response->getHTTPStatus() . ' ' . $response->getRawBody(););
+
+
      //  $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
      //  $multiplemsg->add( $msgB )
