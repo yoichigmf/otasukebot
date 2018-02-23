@@ -276,7 +276,7 @@ if ( count($response) > 0 ) {
                            
     
    $ct = 0;
-   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> ${jiritudo}, query=>"" ];
+   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> $jiritudo, 'query'=>"" ];
         
         
         
@@ -303,7 +303,7 @@ if ( count($response) > 0 ) {
                        
                        $qstr2 = http_build_query($q2);  
                        
-                       array_push($actions[], \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder( $value, $qstr2 ));
+                       array_push($actions,new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder( $value, $qstr2 ));
                        
                        
                        $log->addWarning("add text ${value}\n");
