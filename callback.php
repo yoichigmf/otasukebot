@@ -239,7 +239,7 @@ function srcmenu($boti, $eventi, $targeti, $kindi,  $pagei) {
 
 global $log;
 
-//$kindi = "相談";
+
 
 $jiritudo = $targeti;   //  A B C D が入っている
 
@@ -386,28 +386,67 @@ $jiritudo = $targeti;   //  A B C D が入っている
        
        $qstr1 = http_build_query($q1);
        
+       $q2 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"権利擁護", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr2 = http_build_query($q2);
+       
+       $q3 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"社会参加・仲間づくり支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr3 = http_build_query($q3);
+       
+       $q4 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"役割支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr4 = http_build_query($q4);
+             
+       $q5 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"安否確認・見守り支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr5 = http_build_query($q5);   
+       
+       
+       $q6 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"医療系サービス", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr6 = http_build_query($q6);     
+       
+       
+       $q7 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"生活支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr7 = http_build_query($q7);    
+       
+       $q8 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"身体的ケア", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr8 = http_build_query($q8);  
+      
+       $q9 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"家族・介護者支援", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr9 = http_build_query($q9);  
+       
+       $q10 = [ 'action'=>'browse', 'target'=>${jiritudo}, 'kind'=>"住まい・居住系サービス", 'menu'=>'servicemenu', 'page'=>'2' ];
+       
+       $qstr10 = http_build_query($q10);  
+       
+       
        
        $actions = array(
          new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("相談", $qstr1 ),
-                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("権利擁護", "action=browse&target=${jiritudo}&kind=権利擁護&menu=servicemenu&page=2"),
-                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("社会参加・仲間づくり支援", "action=browse&target=${jiritudo}&kind=社会参加・仲間づくり支援&menu=servicemenu&page=2"),
-             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("役割支援",  "action=browse&target=${jiritudo}&kind=役割支援&menu=servicemenu&page=2")
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("権利擁護", $qstr2),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("社会参加・仲間づくり支援", $qstr3),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("役割支援",  $qstr4)
 
 );
 
 
    
        $actions2 = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("安否確認・見守り支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
-                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("医療系サービス", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
-                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=2"),
-             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身体的ケア",  "action=select&menu=topmenu")
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("安否確認・見守り支援", $qstr5),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("医療系サービス", $qstr6),
+                       new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("生活支援", $qstr7 ),
+             new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("身体的ケア",  $qstr8)
 
 );
 
        $actions3 = array(
-         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("家族・介護者支援", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=1"),
-                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("住まい・居住系サービス", "action=browse&rank=${jiritudo}&target=C&menu=servicemenu&page=1"),
+         new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("家族・介護者支援",$qstr9),
+                new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("住まい・居住系サービス", $qstr10 ),
              new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("戻る",  "action=select&menu=topmenu")
 
 );
