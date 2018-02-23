@@ -296,6 +296,7 @@ $log->addWarning("query error\n");
 function getApiDataCurl($url, $timeout )
 {
    
+global $log;
 
 
 $ch = curl_init();
@@ -328,17 +329,19 @@ $content = trim(curl_exec($ch));
     
     // OK以外はエラーなので空白配列を返す
     if ($errorNo !== CURLE_OK) {
-
+$log->addWarning("error status  ${errorNo}\n");
         return [];
     }
 
     // 200以外のステータスコードは失敗とみなし空配列を返す
     if ($info['http_code'] !== 200) {
+    $erno = $info['http_code'];
+   $log->addWarning("http error status  ${erno}\n");
         return [];
     }
 
-    print "\nok\n";
-    print "content = ${content}\n";
+   // print "\nok\n";
+     $log->addWarning( "success content = ${content}\n" );
     
 
     // 文字列から変換
