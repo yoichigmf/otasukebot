@@ -361,7 +361,24 @@ if ( count($response) > 0 ) {
    
    // $res =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
     
-      $res =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+      $response =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+      
+      
+      if ($response->isSucceeded()) {
+      
+      log->addWarning("Succeeded!\n");
+  //  echo 'Succeeded!';
+    return;
+          }
+
+      else {
+// Failed
+       $msg = $response->getHTTPStatus() . ' ' . $response->getRawBody();
+ log->addWarning("error ${msg}\n");
+      }
+      
+      
+
    //$log->addWarning("message send status ${res}\n");
    
 }
