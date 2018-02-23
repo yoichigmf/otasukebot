@@ -328,7 +328,7 @@ if ( count($response) > 0 ) {
                            
                             $actions = array();
                             
-                             $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
+                           //  $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
                       
                        $q2["query"] = $value;
                        
