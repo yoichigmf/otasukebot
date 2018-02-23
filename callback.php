@@ -239,11 +239,17 @@ function srcmenu($boti, $eventi, $targeti, $kindi,  $pagei) {
 
 global $log;
 
-$kindi = "相談";
+//$kindi = "相談";
 
 $jiritudo = $targeti;   //  A B C D が入っている
 
-$tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuXR5kwjE-D-YwQdQecSFvQZ/exec?action=getrows&sheetname=${kindi}&column=${targeti}";
+ $q1 = [ 'action'=>'getrows', 'target'=>${jiritudo}, 'sheetname'=>${kindi}, 'column'=> ${jiritudo} ];
+       
+       $qstr1 = http_build_query($q1);
+       
+       
+
+$tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuXR5kwjE-D-YwQdQecSFvQZ/exec?" . $qstr1;
 
 $timeout = 20;
 
