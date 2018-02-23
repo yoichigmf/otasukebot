@@ -269,14 +269,26 @@ if ( count($response) > 0 ) {
 
                            
     
-      
+   $ct = 1;
         
-   $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
+  // $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
   if ( $num > 0 ) {
            foreach($tgr as $value){
+           
+              if ( $ct < 5 )
+                      {
                       $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
                       
                        $log->addWarning("add text ${value}\n");
+                       }
+                  else  {
+                                         $log->addWarning("can't add text ${value}\n");
+                  
+                       }
+                  
+                  
+                  ++$ct;
+                  
      
 	    }
   
