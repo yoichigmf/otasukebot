@@ -350,7 +350,7 @@ if ( count($response) > 0 ) {
 	          if ( $ct > 1 ) {
 	             $nn = $ncount + 1;
 	                            $tgm1 = "自立度${jiritudo}向け ${kindi} サービス・支援検索 その${nn}";
-                           $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm , $img_url, $actions);
+                           $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
                            $msgB = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo} ${kindi}", $button); 
                             $multiplemsg->add( $msgB );
                            $ct = 0;
