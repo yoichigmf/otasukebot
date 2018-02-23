@@ -266,22 +266,21 @@ if ( count($response) > 0 ) {
   
       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
-   //    $multiplemsg->add( $msgB )
-   //                        ->add( $msg )
-    //                       ->add($msg2 )
-    //                          ->add($msg3 );
+
                            
     
       
         
-         $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
-  if ( count($tgr) > 0 ) {
-       foreach($tgr as $value){
-         $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
-     // print "\n${value}";
+   $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
+  if ( $num > 0 ) {
+           foreach($tgr as $value){
+                      $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
+                      
+                       $log->addWarning("add text ${value}\n");
+     
 	    }
   
-   }
+       }
    
      $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
    
