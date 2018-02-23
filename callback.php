@@ -259,6 +259,10 @@ $response = getApiDataCurl( $tgurl, $timeout );
 if ( count($response) > 0 ) {
   $tgr = $response["response"];
   
+   $num = count($tgr);
+   
+   
+  $log->addWarning("number of result ${num}\n");
   
       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
@@ -270,7 +274,7 @@ if ( count($response) > 0 ) {
     
       
         
-        
+         $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
   if ( count($tgr) > 0 ) {
        foreach($tgr as $value){
          $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
