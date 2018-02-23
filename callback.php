@@ -383,6 +383,9 @@ function browsemenu($boti, $eventi, $targeti,  $pagei) {
 $jiritudo = $targeti;   //  A B C D が入っている
 
 //$log->addWarning("browsemenu  ${jiritudo}\n");
+
+
+$columns = array();
     
        $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("自立度 ${jiritudo}");
        
@@ -463,26 +466,37 @@ $tgm2 = "自立度${jiritudo}向け サービス・支援検索 その2";
 $tgm3 = "自立度${jiritudo}向け サービス・支援検索 その3";
  
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
-$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button);
-$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm2 , $img_url, $actions2);
-$msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button2);     
 
+
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
+//$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button);
+
+$column = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder("自立度${jiritudo}", $tgm1, $img_url , $actions);
+$columns[] = $column;
+
+
+$button2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm2 , $img_url, $actions2);
+//$msg2 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button2);     
+$column2 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder("自立度${jiritudo}", $tgm2, $img_url , $actions2);
+$columns[] = $column2;
 
 $button3 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm3 , $img_url, $actions3);
-$msg3 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button3);     
+//$msg3 = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}", $button3);     
+ $column3 = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder("自立度${jiritudo}", $tgm3, $img_url , $actions3);
+$columns[] = $column3;      
        
+       $carousel = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder($columns);
+$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo}向けサービス・支援検索", $carousel);
+$boti->replyMessage($eventi->getReplyToken(),$msg);
+     //  $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
-       
-       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
-       
-       $multiplemsg->add( $msgB )
-                           ->add( $msg )
-                           ->add($msg2 )
-                              ->add($msg3 );
+     //  $multiplemsg->add( $msgB )
+     //                      ->add( $msg )
+     //                      ->add($msg2 )
+      //                        ->add($msg3 );
                            
     
-        $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+    //    $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
         return;
 
 }
