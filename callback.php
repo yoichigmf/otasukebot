@@ -355,7 +355,7 @@ if ( count($response) > 0 ) {
      
 	         }// foreach
 	         
-	          if ( $ct > 1 ) {
+	          if ( $ct > 0 ) {
 	             $nn = $ncount + 1;
 	                            $tgm1 = "自立度${jiritudo}向け ${kindi} サービス・支援検索 その${nn}";
                            $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
