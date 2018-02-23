@@ -366,7 +366,7 @@ if ( count($response) > 0 ) {
       
       if ($response->isSucceeded()) {
       
-      log->addWarning("Succeeded!\n");
+      $log->addWarning("Succeeded!\n");
   //  echo 'Succeeded!';
     return;
           }
@@ -374,7 +374,7 @@ if ( count($response) > 0 ) {
       else {
 // Failed
        $msg = $response->getHTTPStatus() . ' ' . $response->getRawBody();
- log->addWarning("error ${msg}\n");
+ $log->addWarning("error ${msg}\n");
       }
       
       
