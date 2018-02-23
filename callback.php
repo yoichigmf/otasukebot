@@ -267,7 +267,7 @@ $tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuX
 
 $timeout = 20;
 
-$log->addWarning($tgurl);
+$log->addWarning($tgurl);  //sample
 $response = getApiDataCurl( $tgurl, $timeout );
 
 if ( count($response) > 0 ) {
