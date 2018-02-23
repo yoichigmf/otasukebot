@@ -282,7 +282,9 @@ if ( count($response) > 0 ) {
   
        }
    
-     $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+    $res =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+    
+     $log->addWarning("message send status ${res}\n");
    
 }
 else  {
