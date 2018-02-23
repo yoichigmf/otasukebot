@@ -288,8 +288,10 @@ if ( count($response) > 0 ) {
     $buttons = array();
     
 
-           $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+    $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
     $actions = array();
+    
+    
   // $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
   if ( $num > 0 ) {
            foreach($tgr as $value){
@@ -311,16 +313,31 @@ if ( count($response) > 0 ) {
                          ++$ct;
                        }
                   else  {
-                                         $log->addWarning("can't add text ${value}\n");
+                           $log->addWarning("make buttons ${value}\n");
                                          
                             $nn = $ncount + 1;
                   
                            $tgm1 = "自立度${jiritudo}向け ${kindi} サービス・支援検索 その${nn}";
                            $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm , $img_url, $actions);
-                           $msgb = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo} ${kindi}", $button); 
+                           $msgB = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo} ${kindi}", $button); 
                             $multiplemsg->add( $msgB );
                            $ct = 0;
                            ++$ncount;
+                           
+                           
+                           
+                            $actions = array();
+                            
+                             $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
+                      
+                       $q2["query"] = $value;
+                       
+                       
+                       $qstr2 = http_build_query($q2);  
+                       
+                       array_push($actions,new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder( $value, $qstr2 ));
+                       
+                        ++$ct;
                            
                        }
                   
@@ -329,6 +346,16 @@ if ( count($response) > 0 ) {
                   
      
 	         }// foreach
+	         
+	          if ( $ct > 1 ) {
+	             $nn = $ncount + 1;
+	                            $tgm1 = "自立度${jiritudo}向け ${kindi} サービス・支援検索 その${nn}";
+                           $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm , $img_url, $actions);
+                           $msgB = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo} ${kindi}", $button); 
+                            $multiplemsg->add( $msgB );
+                           $ct = 0;
+	         
+	         }
   
        } // if $num > 0
    
