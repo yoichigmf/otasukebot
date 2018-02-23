@@ -155,7 +155,15 @@ foreach ($events as $event) {
                        
                  
                      }  // action == target
-                     
+      
+      
+                  if ( strcmp($action, "search" )==0  ) {    //  個別 サービス・支援検索     
+                  
+                  
+                  
+                  }
+                  
+                             
                  
                   if ( strcmp($action, "browse" )==0  ) {    //  browse サービス・支援検索 
                   
@@ -249,7 +257,7 @@ global $log;
 
 $jiritudo = $targeti;   //  A B C D が入っている
 
- $q1 = [ 'action'=>'getrows', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> $jiritudo ];
+ $q1 = [ 'action'=>'getcolumn', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> $jiritudo ];
        
        $qstr1 = http_build_query($q1);
        
@@ -276,7 +284,7 @@ if ( count($response) > 0 ) {
                            
     
    $ct = 0;
-   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'query'=>"" ];
+   $q2 = [ 'action'=>'search', 'target'=>$jiritudo,  'query'=>"" ];
         
         
         
@@ -392,6 +400,8 @@ $log->addWarning("query error\n");
 
 }
 
+
+//  Google Sheet から列を取得する
 
 function getApiDataCurl($url, $timeout )
 {
