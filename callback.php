@@ -276,7 +276,7 @@ if ( count($response) > 0 ) {
                            
     
    $ct = 0;
-   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> ${jiritudo}, query="" ];
+   $q2 = [ 'action'=>'search', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> ${jiritudo}, query=>"" ];
         
         
         
