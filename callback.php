@@ -470,10 +470,10 @@ $tgm3 = "自立度${targeti}向け サービス・支援検索 その3";
 $img_url = "https://otasukebot.herokuapp.com/otasuke.png";
 
 
-$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${targeti}", $tgm1 , $img_url, $actions);
-//$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${targeti}", $button);
+$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度$targeti", $tgm1 , $img_url, $actions);
+//$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度$targeti", $button);
 
-$column = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder("自立度${targeti}", $tgm1, $img_url , $actions);
+$column = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder("自立度$targeti", $tgm1, $img_url , $actions);
 $columns[] = $column;
 
 
