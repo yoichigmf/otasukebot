@@ -280,21 +280,25 @@ if ( count($response) > 0 ) {
   
    $num = count($tgr);
    
-   
-  $log->addWarning("number of result ${num}\n");
+    $log->addWarning("number of result ${num}\n");
   
       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
 
+      $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[0]);   //  サービス名
+      
+      $msgC = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[1]);   //  説明
                            
+      $multiplemsg->add( $msgB );
+      $multiplemsg->add( $msgC );
+      
+      $rets = $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
     
-   $ct = 0;
-   $q2 = [ 'action'=>'search', 'target'=>$jiritudo,  'query'=>"" ];
+      
+     
         
    }
 }
-
-
 
 
 function srcmenu($boti, $eventi, $targeti, $kindi,  $pagei) { 
@@ -320,6 +324,168 @@ $response = getApiDataCurl( $tgurl, $timeout );
 
 if ( count($response) > 0 ) {
   $tgr = $response["response"];
+  
+   $num = count($tgr);
+   
+   
+  $log->addWarning("number of result ${num}\n");
+  
+      $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+       
+
+                           
+    
+   $ct = 0;
+   $q2 = [ 'action'=>'search', 'target'=>$jiritudo,  'query'=>"" ];
+        
+        
+        
+  $mnn = ( $num + 3 ) / 4;  //  ページ数
+  
+  
+    $ncount = 0;
+    
+    $buttons = array();
+    
+
+    $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+    $actions = array();
+    
+    
+  // $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("検索結果"));
+  if ( $num > 0 ) {
+           foreach($tgr as $value){
+           
+              if ( $ct < 4 )
+                      {
+                     // $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
+                      
+                       $q2["query"] = $value;  // debug
+                       
+                       
+                       $qstr2 = http_build_query($q2);  
+                       
+                       array_push($actions,new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder( $value, $qstr2 ));
+                       
+                       
+                       $log->addWarning("add text ${value}\n");
+                       
+                         ++$ct;
+                       }
+                  else  {
+                           $log->addWarning("make buttons ${value}\n");
+                                         
+                            $nn = $ncount + 1;
+                  
+                           $tgm1 = "自立度${jiritudo}向け ${kindi} サービス・支援検索 その${nn}";
+                           $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
+                           $msgB = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo} ${kindi}", $button); 
+                            $multiplemsg->add( $msgB );
+                           $ct = 0;
+                           ++$ncount;
+                           
+                           
+                           
+                            $actions = array();
+                            
+                           //  $multiplemsg->add( new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($value));
+                      
+                       $q2["query"] = $value;
+                       
+                       
+                       $qstr2 = http_build_query($q2);  
+                       
+                       array_push($actions,new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder( $value, $qstr2 ));
+                       
+                        ++$ct;
+                           
+                       }
+                  
+                  
+                
+                  
+     
+	         }// foreach
+	         
+	          if ( $ct > 0 ) {
+	             $nn = $ncount + 1;
+	                            $tgm1 = "自立度${jiritudo}向け ${kindi} サービス・支援検索 その${nn}";
+                           $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("自立度${jiritudo}", $tgm1 , $img_url, $actions);
+                           $msgB = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("自立度${jiritudo} ${kindi}", $button); 
+                            $multiplemsg->add( $msgB );
+                           $ct = 0;
+	         
+	         }
+  
+       } // if $num > 0
+   
+   // $res =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+    
+      $response =  $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+      
+      
+      if ($response->isSucceeded()) {
+      
+      $log->addWarning("Succeeded!\n");
+  //  echo 'Succeeded!';
+    return;
+          }
+
+      else {
+// Failed
+       $msg = $response->getHTTPStatus() . ' ' . $response->getRawBody();
+ $log->addWarning("error ${msg}\n");
+      }
+      
+      
+
+   //$log->addWarning("message send status ${res}\n");
+   
+}
+else  {
+
+$log->addWarning("query error\n");
+} 
+
+
+
+
+
+
+
+
+function srcmenu2($boti, $eventi, $targeti, $kindi,  $pagei) { 
+
+global $log;
+
+
+
+$jiritudo = $targeti;   //  A B C D が入っている
+
+ $q1 = [ 'action'=>'getcolumn', 'target'=>$jiritudo, 'sheetname'=>$kindi, 'column'=> $jiritudo ];
+       
+       $qstr1 = http_build_query($q1);
+       
+       
+
+$tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuXR5kwjE-D-YwQdQecSFvQZ/exec?" . $qstr1;
+
+$timeout = 20;
+
+$log->addWarning($tgurl);  //sample
+$response = getApiDataCurl( $tgurl, $timeout );
+
+if ( count($response) > 0 ) {
+  $tgr = $response["response"];
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
    $num = count($tgr);
    
