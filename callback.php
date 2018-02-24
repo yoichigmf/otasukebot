@@ -284,15 +284,34 @@ if ( count($response) > 0 ) {
   
       $multiplemsg = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
        
+     if ( $num > 0 ) {
+     
+         $tc = 0;
+           foreach($tgr as $value){
+           
+           if ( $value ) {
+            $log->addWarning("${value}\n");
 
-      $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[0]);   //  サービス名
+                $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $value);   // 
+                $multiplemsg->add( $msgB );
       
-      $msgC = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[1]);   //  説明
+               }
+      
+      
+     // $msgC = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[1]);   //  説明
                            
-      $multiplemsg->add( $msgB );
-      $multiplemsg->add( $msgC );
+      
+      //$multiplemsg->add( $msgC );
+       }
+       
       
       $rets = $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
+      }
+      else {
+      
+      
+      
+      }
     
       
      
