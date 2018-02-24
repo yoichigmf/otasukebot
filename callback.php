@@ -447,7 +447,7 @@ else  {
 $log->addWarning("query error\n");
 } 
 
-
+}
 
 
 
