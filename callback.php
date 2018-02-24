@@ -295,7 +295,7 @@ if ( count($response) > 0 ) {
                if ( $tc != 1 ) {
                 $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $value);   // 
                 $multiplemsg->add( $msgB );
-                   }  $tc != 1
+                   }//  $tc != 1
                 
                } // $valuegv
       
