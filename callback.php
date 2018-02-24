@@ -255,7 +255,7 @@ $res = $boti->replyMessage($eventi->getReplyToken(),$msg);
 
 //   指定サービス情報の検索   $target   自立度   $query   サービス名
 function      serachsv( $bot, $event, $target, $query ){
-h
+
 global $log;
 
 
