@@ -266,7 +266,7 @@ $jiritudo = $targeti;   //  A B C D が入っている
        
        $qstr1 = http_build_query($q1);
        
-       
+  $log->addWarning($query);  //sample     
 
 $tgurl = "https://script.google.com/macros/s/AKfycbz8Y6MCUMXYc7llYhuyYh5QWT3AOuXR5kwjE-D-YwQdQecSFvQZ/exec?" . $qstr1;
 
