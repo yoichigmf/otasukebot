@@ -300,7 +300,7 @@ if ( count($response) > 0 ) {
                } // $valuegv
       
           ++$tc;
-     // $msgC = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[1]);   //  説明
+     // $msgC = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[1]);   //  説明  
                            
       
       //$multiplemsg->add( $msgC );
