@@ -291,22 +291,24 @@ if ( count($response) > 0 ) {
            
            if ( $value ) {
             $log->addWarning("${value}\n");
-
+              
+               if ( $tc != 1 ) {
                 $msgB = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $value);   // 
                 $multiplemsg->add( $msgB );
+                   }  $tc != 1
+                
+               } // $valuegv
       
-               }
-      
-      
+          ++$tc;
      // $msgC = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder( $tgr[1]);   //  説明
                            
       
       //$multiplemsg->add( $msgC );
-       }
+       }   //  foreach
        
       
-      $rets = $boti->replyMessage($eventi->getReplyToken(), $multiplemsg );
-      }
+      $rets = $bot->replyMessage($event->getReplyToken(), $multiplemsg );
+      }  if $num > 0
       else {
       
       
