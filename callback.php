@@ -308,7 +308,7 @@ if ( count($response) > 0 ) {
        
       
       $rets = $bot->replyMessage($event->getReplyToken(), $multiplemsg );
-      }  if $num > 0
+      }//  if $num > 0
       else {
       
       
